@@ -80,7 +80,9 @@ public class AngoPet {
     }
 
     public void move() {
-        this.x +=1;
+
+            this.x += this.xSpeed;
+            this.y += this.ySpeed;
     }
 
     public void render( Canvas canvas ) {
