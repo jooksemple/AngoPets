@@ -12,7 +12,7 @@ public class AngoPet {
      */
     public Image img;
     private double x, y, width, height;
-    private int hunger, happiness;
+    private int hunger, happiness, xSpeed, ySpeed;
     private boolean isSick;
 
     public AngoPet(double width, double height) {
@@ -21,17 +21,23 @@ public class AngoPet {
         img = new Image("file:PICS/baby.jpg");
         this.isSick = false;
         this.hunger = 0;
+        this.xSpeed = 1;
+        this.ySpeed = 1;
         this.happiness = 0;
         this.x = 50;
         this.y = 50;
     }
     public AngoPet() {
+        this.xSpeed = 0;
+        this.ySpeed = 0;
         img = new Image("file:PICS/baby.jpg");
         this.isSick = false;
         this.hunger = 0;
         this.happiness = 0;
         this.x = 50;
         this.y = 50;
+        this.setWidth(50);
+        this.setHeight(50);
     }
 
 
@@ -47,13 +53,15 @@ public class AngoPet {
     public double getHeight() {
         return this.height;
     }
+
     public void setX(double x) {
       this.x = x;
     }
     public void setY(double y) {
         this.y = y;
     }
-
+    public void setXSpeed(int speed) { this.xSpeed = speed; }
+    public void setYSpeed(int speed) { this.ySpeed = speed; }
     public void setWidth( double width) {
        this.width = width;
     }
@@ -75,14 +83,14 @@ public class AngoPet {
     public int getHappiness() {
         return this.happiness;
     }
+
     public boolean getIsSick() {
         return this.isSick;
     }
 
     public void move() {
-
-            this.x += this.xSpeed;
-            this.y += this.ySpeed;
+        this.x += this.xSpeed;
+        this.y += this.ySpeed;
     }
 
     public void render( Canvas canvas ) {

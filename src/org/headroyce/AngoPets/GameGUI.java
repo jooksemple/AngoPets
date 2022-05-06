@@ -1,9 +1,12 @@
 package org.headroyce.AngoPets;
 
 import javafx.animation.AnimationTimer;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 
 public class GameGUI extends StackPane {
@@ -20,6 +23,12 @@ public class GameGUI extends StackPane {
         logic = new GameLogic();
 
         this.getChildren().add(gameArea);
+        gameArea.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                logic.click(mouseEvent);
+            }
+        });
         animTimer.start();
     }
 
