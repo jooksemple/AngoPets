@@ -5,32 +5,40 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class GameLogic {
     private Random rand;
-    private Button play;
+    private ArrayList<Button> buttons;
     private GameTimer gameTimer;
     private double canvasWidth, canvasHeight;
-    private Snake genderNeutralAngopet;
+    private AngoPet genderNeutralAngopet;
+    private Stage stage;
 
     public GameLogic() {
-        play = new Button(500, 50, 50, 20);
-        play.setColor(Color.BLACK);
-        play.setText("PLAY");
+        stage = new Stage();
+        buttons = new ArrayList<>();
         rand = new Random();
         gameTimer = new GameTimer();
         genderNeutralAngopet = new Snake(70, 70);
         gameTimer.start();
     }
     public void click(MouseEvent mouseEvent) {
-        if (isWithin (mouseEvent.getX(), mouseEvent.getY(), genderNeutralAngopet.getX(), genderNeutralAngopet.getY(), genderNeutralAngopet.getWidth(), genderNeutralAngopet.getHeight())) {
+        if (mouseEvent.getX() >= genderNeutralAngopet.getX() && mouseEvent.getX() <= genderNeutralAngopet.getX() + genderNeutralAngopet.getWidth() && mouseEvent.getY() >= genderNeutralAngopet.getY() && mouseEvent.getY() <= genderNeutralAngopet.getY() + genderNeutralAngopet.getHeight()) {
             genderNeutralAngopet.setXSpeed(2);
             genderNeutralAngopet.setYSpeed(2);
         }
+
+        for(int i = 0; i < buttons.size(); i++) {
+            if (isWithin(mouseEvent.getX(), mouseEvent.getY(), buttons.get(i))) {
+                buttons.get(i).click();
+            }
+        }
+
     }
-    public boolean isWithin(double x, double y, double boxX, double boxY, double boxWidth, double boxHeight) {
-        if (x >= boxX && x <= boxX + boxWidth && y >= boxY && y <= boxY + boxHeight) {
+    public boolean isWithin(double x, double y, Button button) {
+        if (x >= button.getX() && x <= button.getX() + button.getWidth() && y >= button.getY() && y <= button.getY() + button.getHeight()) {
             return true;
         }
         return false;
@@ -47,7 +55,12 @@ public class GameLogic {
         @Override
         public void handle(long now) {
             genderNeutralAngopet.move();
-            //TODO
+            for(int i = 0; i < buttons.size(); i++) {
+                if (buttons.get(i).isOn()) {
+                    stage.setSet(buttons.get(i).getStage());
+                }
+            }
+
         }
     }
 
@@ -59,8 +72,12 @@ public class GameLogic {
     public void render(Canvas canvas) {
         canvasWidth = canvas.getWidth();
         canvasHeight = canvas.getHeight();
+        stage.render(canvas);
+        buttons = stage.getButtons();
+        for(int i = 0; i < buttons.size(); i++) {
+            buttons.get(i).render(canvas);
+        }
         genderNeutralAngopet.render(canvas);
-        play.render(canvas);
     }
 
 }
