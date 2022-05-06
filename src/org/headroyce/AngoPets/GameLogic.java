@@ -3,16 +3,21 @@ package org.headroyce.AngoPets;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 
 import java.util.Random;
 
 public class GameLogic {
     private Random rand;
+    private Button play;
     private GameTimer gameTimer;
     private double canvasWidth, canvasHeight;
     private Snake genderNeutralAngopet;
 
     public GameLogic() {
+        play = new Button(500, 50, 50, 20);
+        play.setColor(Color.BLACK);
+        play.setText("PLAY");
         rand = new Random();
         gameTimer = new GameTimer();
         genderNeutralAngopet = new Snake(70, 70);
@@ -55,6 +60,7 @@ public class GameLogic {
         canvasWidth = canvas.getWidth();
         canvasHeight = canvas.getHeight();
         genderNeutralAngopet.render(canvas);
+        play.render(canvas);
     }
 
 }
