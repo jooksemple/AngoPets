@@ -13,6 +13,8 @@ public class GameLogic {
     private ArrayList<Button> buttons;
     private GameTimer gameTimer;
     private double canvasWidth, canvasHeight;
+    private int int1, int2;
+    private String operation, playString;
     private AngoPet genderNeutralAngopet;
     private Stage stage;
 
@@ -22,6 +24,10 @@ public class GameLogic {
         rand = new Random();
         gameTimer = new GameTimer();
         genderNeutralAngopet = new Snake(70, 70);
+        int1 = rand.nextInt(10);
+        int2 = rand.nextInt(10);
+        operation = "add";
+        playString = "";
         gameTimer.start();
     }
     public void click(MouseEvent mouseEvent) {
@@ -60,6 +66,22 @@ public class GameLogic {
                     stage.setSet(buttons.get(i).getStage());
                 }
             }
+            if (stage.getSet() == "Play") {
+                if (playString == "") {
+                    if (genderNeutralAngopet.getAge() < 5) {
+                        int1 = rand.nextInt(10);
+                        int2 = rand.nextInt(10);
+                        operation = "+";
+                    }
+                    if (genderNeutralAngopet.getAge() > 5 && genderNeutralAngopet.getAge() < 15) {
+                        int1 = rand.nextInt(20);
+                        int2 = rand.nextInt(20);
+                        operation = "-";
+                    }
+                    playString = int1 +" " + operation + " " + int2 + " =";
+                    stage.setPlayString(playString);
+                }
+            }
 
         }
     }
@@ -77,7 +99,10 @@ public class GameLogic {
         for(int i = 0; i < buttons.size(); i++) {
             buttons.get(i).render(canvas);
         }
-        genderNeutralAngopet.render(canvas);
+        if (stage.getSet() == "StartingScreen") {
+            genderNeutralAngopet.render(canvas);
+        }
+
     }
 
 }

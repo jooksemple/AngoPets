@@ -43,6 +43,8 @@ public class Button {
     public double getHeight() {
         return this.height;
     }
+    public Color getColor() {return this.color; }
+    public String getText() {return this.text; }
 
     public void setIsOn(boolean isOn) {
         this.isOn = isOn;
@@ -72,6 +74,9 @@ public class Button {
     }
     public String getStage() {
         return "StartingScreen";
+    }
+    public boolean getIsShowing() {
+        return this.isShowing;
     }
 
     public void render( Canvas canvas ) {
