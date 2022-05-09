@@ -25,6 +25,7 @@ public class NumberButton extends Button{
         this.ySpeed = 0;
         rand = new Random();
         this.number = rand.nextInt(50);
+
     }
     public NumberButton() {
         this.x = 0;
@@ -36,8 +37,6 @@ public class NumberButton extends Button{
         rand = new Random();
         this.number = rand.nextInt(50);
     }
-    public void setXSpeed(int xSpeed) {this.xSpeed = xSpeed; }
-    public void setYSpeed(int ySpeed) {this.ySpeed = ySpeed; }
 
     public String getStage() {
         return "Play";
@@ -58,6 +57,7 @@ public class NumberButton extends Button{
         GraphicsContext gc = canvas.getGraphicsContext2D();
         if (this.getIsShowing()) {
             this.move();
+
             gc.setFill(this.getColor());
             gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
             gc.setFill(this.getColor().invert());

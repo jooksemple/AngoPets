@@ -10,7 +10,7 @@ import javafx.scene.text.TextAlignment;
  * Represents the clickable objects in the game
  */
 public class Button {
-    private double x, y, width, height;
+    private double x, y, width, height, xSpeed, ySpeed;
     private String text;
     private Color color;
     private boolean isOn;
@@ -48,11 +48,16 @@ public class Button {
     }
     public Color getColor() {return this.color; }
     public String getText() {return this.text; }
+    public void setXSpeed(double xSpeed) {this.xSpeed = xSpeed; }
+    public void setYSpeed(double ySpeed) {this.ySpeed = ySpeed; }
+
 
     public void setIsOn(boolean isOn) {
         this.isOn = isOn;
     }
 
+    public double getXSpeed() {return this.xSpeed; }
+    public double getYSpeed() {return this.ySpeed; }
     public void setText( String text) {
         this.text = text;
     }
