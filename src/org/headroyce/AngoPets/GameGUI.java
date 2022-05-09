@@ -10,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 
 public class GameGUI extends StackPane {
+    //eeee
     private Canvas gameArea;
     private GameLogic logic;
     private AnimationTimer animTimer;
