@@ -9,6 +9,9 @@ import javafx.scene.text.TextAlignment;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Represents the Stages of the game
+ */
 public class Stage {
     private String set, playString;
     private ArrayList<Button> buttons;
@@ -19,10 +22,19 @@ public class Stage {
         this.set = "StartingScreen";
         rand = new Random();
     }
+
+    /**
+     * Sets the scene (what the canvas will look like)
+     * @param set the scene to set to
+     */
     public void setSet(String set) {
         this.set = set;
     }
 
+    /**
+     * Get the current scene the canvas is set to
+     * @return the current scene
+     */
     public String getSet() {
         return this.set;
     }
@@ -30,14 +42,23 @@ public class Stage {
     public ArrayList<Button> getButtons() {
         return buttons;
     }
+
+    /**
+     * Sets the playString (the equation/expression to solve in Asteroids)
+     * @param playString the new playString to set to
+     */
     public void setPlayString(String playString) {
         this.playString = playString;
     }
+
+    /**
+     * Render these objects onto the canvas
+     * @param canvas the canvas to render onto
+     */
     public void render(Canvas canvas) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         double canvasWidth = canvas.getWidth();
         double canvasHeight = canvas.getHeight();
-
 
         //what the play screen will look like
         if (set == "Play") {

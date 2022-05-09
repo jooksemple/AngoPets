@@ -6,6 +6,9 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 
+/**
+ * Represents the most basic version of an AngoPet
+ */
 public class AngoPet {
     /**
      * the image to be drawn instead of a ball

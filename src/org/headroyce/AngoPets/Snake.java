@@ -2,6 +2,9 @@ package org.headroyce.AngoPets;
 
 import javafx.scene.image.Image;
 
+/**
+ * Represents a specific type of AngoPet
+ */
 public class Snake extends Scales {
 
     public Snake() {

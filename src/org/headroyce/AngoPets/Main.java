@@ -6,6 +6,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+/**
+ * Driver to start the JavaFX program
+ */
 public class Main extends Application {
     public Main() {
         }

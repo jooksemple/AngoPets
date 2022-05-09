@@ -1,5 +1,8 @@
 package org.headroyce.AngoPets;
 
+/**
+ * Represents the MenuButton
+ */
 public class MenuButton extends Button {
     public MenuButton(double x, double y, double width, double height) {
         this.setIsOn(false);

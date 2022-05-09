@@ -7,6 +7,9 @@ import javafx.scene.text.TextAlignment;
 
 import java.util.Random;
 
+/**
+ * Represents the buttons of the Asteroid game
+ */
 public class NumberButton extends Button{
     private int number;
     private Random rand;

@@ -6,6 +6,9 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
 
+/**
+ * Represents the clickable objects in the game
+ */
 public class Button {
     private double x, y, width, height;
     private String text;

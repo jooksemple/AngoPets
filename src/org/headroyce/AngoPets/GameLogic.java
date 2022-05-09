@@ -8,6 +8,9 @@ import javafx.scene.paint.Color;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Represents the logic of the game
+ */
 public class GameLogic {
     private Random rand;
     private ArrayList<Button> buttons;
@@ -30,6 +33,11 @@ public class GameLogic {
         playString = "";
         gameTimer.start();
     }
+
+    /**
+     * Checks for when a button is clicked
+     * @param mouseEvent the cursor clicking the button
+     */
     public void click(MouseEvent mouseEvent) {
         if (mouseEvent.getX() >= genderNeutralAngopet.getX() && mouseEvent.getX() <= genderNeutralAngopet.getX() + genderNeutralAngopet.getWidth() && mouseEvent.getY() >= genderNeutralAngopet.getY() && mouseEvent.getY() <= genderNeutralAngopet.getY() + genderNeutralAngopet.getHeight()) {
             genderNeutralAngopet.setXSpeed(2);
@@ -41,14 +49,22 @@ public class GameLogic {
                 buttons.get(i).click();
             }
         }
-
     }
+
+    /**
+     *
+     * @param x
+     * @param y
+     * @param button
+     * @return
+     */
     public boolean isWithin(double x, double y, Button button) {
         if (x >= button.getX() && x <= button.getX() + button.getWidth() && y >= button.getY() && y <= button.getY() + button.getHeight()) {
             return true;
         }
         return false;
     }
+
     private class GameTimer extends AnimationTimer {
         // The last nanosecond
         private long lastUpdate;
@@ -88,7 +104,6 @@ public class GameLogic {
 
     /**
      * Renders the game elements onto a canvas
-     *
      * @param canvas the canvas to render onto
      */
     public void render(Canvas canvas) {

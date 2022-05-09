@@ -9,8 +9,11 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 
+/**
+ * Represents the Graphics of the game
+ */
 public class GameGUI extends StackPane {
-    //eeee
+
     private Canvas gameArea;
     private GameLogic logic;
     private AnimationTimer animTimer;
