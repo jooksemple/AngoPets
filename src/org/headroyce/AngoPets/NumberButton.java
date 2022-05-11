@@ -13,16 +13,16 @@ import java.util.Random;
 public class NumberButton extends Button{
     private int number;
     private Random rand;
-    private int xSpeed, ySpeed;
     private double x, y;
+
     public NumberButton(double x, double y, double width, double height) {
         this.setIsOn(false);
         this.setX(x);
         this.setY(y);
         this.setWidth(width);
         this.setHeight(height);
-        this.xSpeed = 0;
-        this.ySpeed = 0;
+        this.setXSpeed(0);
+        this.setYSpeed(0);
         rand = new Random();
         this.number = rand.nextInt(50);
 
@@ -30,8 +30,8 @@ public class NumberButton extends Button{
     public NumberButton() {
         this.x = 0;
         this.y = 0;
-        this.xSpeed = 0;
-        this.ySpeed = 0;
+        this.setXSpeed(0);
+        this.setYSpeed(0);
         this.setWidth(50);
         this.setHeight(50);
         rand = new Random();
@@ -50,8 +50,8 @@ public class NumberButton extends Button{
     }
 
     public void move() {
-        this.x += this.xSpeed;
-        this.y += this.ySpeed;
+        this.x += this.getXSpeed();
+        this.y += this.getYSpeed();
     }
     public void render( Canvas canvas ) {
         GraphicsContext gc = canvas.getGraphicsContext2D();

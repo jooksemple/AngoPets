@@ -114,8 +114,8 @@ public class GameLogic {
                             e.setX(rand.nextInt((int) canvasWidth));
                             e.setY(-e.getHeight());
                             e.setColor(Color.RED);
-                            e.setYSpeed(rand.nextInt(5));
-                            e.setXSpeed(rand.nextInt(5) * 2 - 5);
+                            e.setYSpeed(rand.nextDouble(5));
+                            e.setXSpeed(rand.nextDouble(5) * 2 - 5);
                             buttons.add(e);
                         }
                         Button c = new Button(500, 20, 50, 20);
@@ -123,6 +123,14 @@ public class GameLogic {
                         c.setColor(Color.RED);
                         buttons.add(c);
 
+                    }
+                    for (int i = 0; i < buttons.size(); i++) {
+                        if (buttons.get(i).getX() + buttons.get(i).getWidth() > canvasWidth) {
+                            buttons.get(i).setXSpeed(Math.abs(buttons.get(i).getXSpeed()) * -1);
+                        }
+                        if (buttons.get(i).getX() < 0) {
+                            buttons.get(i).setXSpeed(Math.abs(buttons.get(i).getXSpeed()));
+                        }
                     }
 
                 if (playString == "") {
