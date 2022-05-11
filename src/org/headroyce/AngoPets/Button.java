@@ -50,13 +50,26 @@ public class Button {
      * @return the current status of isOn
      */
     public boolean isOn() { return this.isOn; }
-
+    /**
+     * Sets the status of IsOn (Whether the button has been clicked)
+     * @param isOn the new status to set to
+     */
+    public void setIsOn(boolean isOn) {
+        this.isOn = isOn;
+    }
     /**
      * Gets the X coordinate of the Button
      * @return the X coordinate
      */
     public double getX() {
         return this.x;
+    }
+    /**
+     * Sets the X coordinate of the button
+     * @param x the new X coordinate
+     */
+    public void setX(double x) {
+        this.x = x;
     }
     /**
      * Gets the Y coordinate of the Button
@@ -66,11 +79,25 @@ public class Button {
         return this.y;
     }
     /**
+     * Sets the Y coordinate of the button
+     * @param y the new Y coordinate
+     */
+    public void setY(double y) {
+        this.y = y;
+    }
+    /**
      * Gets the width of the button
      * @return the width of the button
      */
     public double getWidth() {
         return this.width;
+    }
+    /**
+     * Sets the width of the button
+     * @param width the new width to set to
+     */
+    public void setWidth( double width) {
+        this.width = width;
     }
     /**
      * Gets the height of the button
@@ -80,63 +107,86 @@ public class Button {
         return this.height;
     }
     /**
+     * Sets the height of the button
+     * @param height the new height to set to
+     */
+    public void setHeight( double height) {
+        this.height = height;
+    }
+    /**
      * Gets the color of the button
      * @return the color of the button
      */
     public Color getColor() {return this.color; }
+
+    /**
+     * Sets the color of the button
+     * @param color the new color to set to
+     */
+    public void setColor(Color color) {this.color = color; }
     /**
      * Gets the text set to the button
      * @return the text of the button
      */
     public String getText() {return this.text; }
     /**
+     * Sets the text of the button
+     * @param text the new text to set to
+     */
+    public void setText( String text) {
+        this.text = text;
+    }
+
+    /**
+     * Gets the speed of the button in the X direction
+     * @return the X speed
+     */
+    public double getXSpeed() {return this.xSpeed; }
+    /**
      * Sets the speed of the button in the X direction
      * @param xSpeed the new X speed
      */
     public void setXSpeed(double xSpeed) {this.xSpeed = xSpeed; }
-
+    /**
+     * Sets the speed of the button in the Y direction
+     * @return the Y speed
+     */
+    public double getYSpeed() {return this.ySpeed; }
     /**
      * Sets the speed of the button in the Y direction
      * @param ySpeed the new Y speed
      */
     public void setYSpeed(double ySpeed) {this.ySpeed = ySpeed; }
 
-
-    public void setIsOn(boolean isOn) {
-        this.isOn = isOn;
-    }
-
-    public double getXSpeed() {return this.xSpeed; }
-    public double getYSpeed() {return this.ySpeed; }
-    public void setText( String text) {
-        this.text = text;
-    }
-    public void setWidth( double width) {
-        this.width = width;
-    }
-    public void setHeight( double height) {
-        this.height = height;
-    }
-    public void setX(double x) {
-        this.x = x;
-    }
-    public void setY(double y) {
-        this.y = y;
-    }
-    public void setColor(Color color) {this.color = color; }
-
+    /**
+     * Changes the status of isOn if the button has been clicked
+     */
     public void click() {
         if (isShowing) {
             isOn = !isOn;
         }
     }
+
+    /**
+     * Gets the current stage of the canvas
+     * @return the
+     */
     public String getStage() {
         return "StartingScreen";
     }
+
+    /**
+     * Gets the
+     * @return
+     */
     public boolean getIsShowing() {
         return this.isShowing;
     }
 
+    /**
+     * Renders the game elements onto a canvas
+     * @param canvas the canvas to render onto
+     */
     public void render( Canvas canvas ) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         if (isShowing) {

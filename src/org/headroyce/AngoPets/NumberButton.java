@@ -53,6 +53,11 @@ public class NumberButton extends Button{
         this.x += this.xSpeed;
         this.y += this.ySpeed;
     }
+
+    /**
+     * Renders the game elements onto a canvas
+     * @param canvas the canvas to render onto
+     */
     public void render( Canvas canvas ) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         if (this.getIsShowing()) {
