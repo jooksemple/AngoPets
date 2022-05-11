@@ -27,7 +27,7 @@ public class GameLogic {
         buttons = new ArrayList<>();
         rand = new Random();
         gameTimer = new GameTimer();
-        genderNeutralAngopet = new Snake(70, 70);
+        genderNeutralAngopet = new Bear(90, 70);
         int1 = rand.nextInt(10);
         int2 = rand.nextInt(10);
         operation = "add";
@@ -80,6 +80,7 @@ public class GameLogic {
             long scoring_time_elapsed = (now - lastUpdate) / 1000000;
             if (scoring_time_elapsed > STAT_TIMER) {
                 genderNeutralAngopet.setAge(genderNeutralAngopet.getAge() + 1);
+                genderNeutralAngopet.age(genderNeutralAngopet.getAge());
                 statUpdate = now;
                 lastUpdate = now;
             }

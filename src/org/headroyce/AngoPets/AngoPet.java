@@ -99,6 +99,11 @@ public class AngoPet {
         this.x += this.xSpeed;
         this.y += this.ySpeed;
     }
+    public void age(int age) {
+        if (age >= 0 && age <= 5) {
+            img = new Image("file:PICS/babyDefault.png");
+        }
+    }
 
     public void render( Canvas canvas ) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
