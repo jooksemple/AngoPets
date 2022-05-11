@@ -34,5 +34,8 @@ public class Snake extends AngoPet {
         if (age > 5 && age <= 15) {
             img = new Image("file:PICS/babySnake.png");
         }
+        if (age > 15 && age <= 25) {
+            img = new Image("file:PICS/green_teenSnake.png");
+        }
     }
 }

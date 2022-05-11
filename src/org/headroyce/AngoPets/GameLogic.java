@@ -27,7 +27,7 @@ public class GameLogic {
         buttons = new ArrayList<>();
         rand = new Random();
         gameTimer = new GameTimer();
-        genderNeutralAngopet = new Bear(90, 70);
+        genderNeutralAngopet = new Snake(85, 70);
         int1 = rand.nextInt(10);
         int2 = rand.nextInt(10);
         operation = "add";
