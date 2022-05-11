@@ -68,6 +68,7 @@ public class Stage {
             gc.setFill(Color.ALICEBLUE);
             gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         }
+
         //What the menu screen will look like
         if (set == "Menu") {
             gc.setFill(Color.RED);
