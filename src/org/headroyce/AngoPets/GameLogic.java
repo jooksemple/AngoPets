@@ -137,9 +137,34 @@ public class GameLogic {
                         operation = "-";
                     }
                     if (genderNeutralAngopet.getAge() > 15 && genderNeutralAngopet.getAge() < 25) {
-                        int1 = rand.nextInt(20);
-                        int2 = rand.nextInt(20);
-                        operation = "*";
+                        int1 = rand.nextInt(10);
+                        int2 = rand.nextInt(10);
+                        int op = rand.nextInt(2);
+                        if (op == 1) {
+                            operation = "*";
+                        } else {
+                            operation = "/";
+                        }
+                    }
+                    if (genderNeutralAngopet.getAge() > 25 && genderNeutralAngopet.getAge() < 35) {
+                        int1 = rand.nextInt(20) - 10;
+                        int2 = rand.nextInt(20) - 10;
+                        int op = rand.nextInt(2);
+                        if (op == 1) {
+                            operation = "*";
+                        } else {
+                            operation = "/";
+                        }
+                    }
+                    if (genderNeutralAngopet.getAge() > 35 && genderNeutralAngopet.getAge() < 45) {
+                        int1 = rand.nextInt(40) - 20;
+                        int2 = rand.nextInt(40) - 20;
+                        int op = rand.nextInt(2);
+                        if (op == 1) {
+                            operation = "*";
+                        } else {
+                            operation = "/";
+                        }
                     }
                     playString = int1 + " " + operation + " " + int2 + " =";
                     stage.setPlayString(playString);
