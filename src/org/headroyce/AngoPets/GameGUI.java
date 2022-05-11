@@ -14,6 +14,7 @@ import javafx.scene.layout.StackPane;
  */
 public class GameGUI extends StackPane {
 
+
     private Canvas gameArea;
     private GameLogic logic;
     private AnimationTimer animTimer;

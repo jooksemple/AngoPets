@@ -12,6 +12,7 @@ import java.util.Random;
  * Represents the logic of the game
  */
 public class GameLogic {
+    private static final int STAT_TIMER = 1000;
     private Random rand;
     private ArrayList<Button> buttons;
     private GameTimer gameTimer;
@@ -40,8 +41,7 @@ public class GameLogic {
      */
     public void click(MouseEvent mouseEvent) {
         if (mouseEvent.getX() >= genderNeutralAngopet.getX() && mouseEvent.getX() <= genderNeutralAngopet.getX() + genderNeutralAngopet.getWidth() && mouseEvent.getY() >= genderNeutralAngopet.getY() && mouseEvent.getY() <= genderNeutralAngopet.getY() + genderNeutralAngopet.getHeight()) {
-            genderNeutralAngopet.setXSpeed(2);
-            genderNeutralAngopet.setYSpeed(2);
+
         }
 
         for(int i = 0; i < buttons.size(); i++) {
@@ -68,15 +68,23 @@ public class GameLogic {
     private class GameTimer extends AnimationTimer {
         // The last nanosecond
         private long lastUpdate;
-        private long scoringUpdate;
+        private long statUpdate;
 
         public GameTimer() {
-            scoringUpdate = lastUpdate = 0;
+            statUpdate = lastUpdate = 0;
         }
 
         @Override
         public void handle(long now) {
+
+            long scoring_time_elapsed = (now - lastUpdate) / 1000000;
+            if (scoring_time_elapsed > STAT_TIMER) {
+                genderNeutralAngopet.setAge(genderNeutralAngopet.getAge() + 1);
+                statUpdate = now;
+                lastUpdate = now;
+            }
             genderNeutralAngopet.move();
+
             for(int i = 0; i < buttons.size(); i++) {
                 if (buttons.get(i).isOn()) {
                     stage.setSet(buttons.get(i).getStage());
@@ -98,7 +106,8 @@ public class GameLogic {
             }
 
                 if (stage.getSet() == "Play") {
-                    if (buttons.size() < 10) {
+                    if (buttons.size() != 11) {
+                        playString = "";
                         buttons.clear();
                         for (int i = 0; i < 10; i++) {
                             NumberButton e = new NumberButton();
@@ -109,6 +118,11 @@ public class GameLogic {
                             e.setXSpeed(rand.nextInt(5) * 2 - 5);
                             buttons.add(e);
                         }
+                        Button c = new Button(500, 20, 50, 20);
+                        c.setText("Back");
+                        c.setColor(Color.RED);
+                        buttons.add(c);
+
                     }
 
                 if (playString == "") {
@@ -122,7 +136,12 @@ public class GameLogic {
                         int2 = rand.nextInt(20);
                         operation = "-";
                     }
-                    playString = int1 +" " + operation + " " + int2 + " =";
+                    if (genderNeutralAngopet.getAge() > 15 && genderNeutralAngopet.getAge() < 25) {
+                        int1 = rand.nextInt(20);
+                        int2 = rand.nextInt(20);
+                        operation = "*";
+                    }
+                    playString = int1 + " " + operation + " " + int2 + " =";
                     stage.setPlayString(playString);
                 }
             }
@@ -141,6 +160,7 @@ public class GameLogic {
         for(int i = 0; i < buttons.size(); i++) {
             buttons.get(i).render(canvas);
         }
+        
         if (stage.getSet() == "StartingScreen") {
             genderNeutralAngopet.render(canvas);
         }

@@ -106,5 +106,7 @@ public class AngoPet {
         this.setY(canvas.getHeight()/2 - this.getHeight()/2);
         gc.setFill(new ImagePattern(img));
         gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+        gc.setFill(Color.BLACK);
+        gc.fillText("Age: " + this.getAge(), canvas.getWidth()/2, 20);
     }
 }

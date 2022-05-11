@@ -55,9 +55,9 @@ public class NumberButton extends Button{
     }
     public void render( Canvas canvas ) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
+
         if (this.getIsShowing()) {
             this.move();
-
             gc.setFill(this.getColor());
             gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
             gc.setFill(this.getColor().invert());
