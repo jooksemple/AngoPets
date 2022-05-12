@@ -9,9 +9,9 @@ import java.util.Random;
  */
 public class Snake extends AngoPet {
     private Random rand;
-    private String Color;
+
     public Snake() {
-        Color = "";
+        this.setColor("");
         rand = new Random();
         img = new Image("file:PICS/babyDefault.png");
         this.setIsSick(false);
@@ -22,7 +22,7 @@ public class Snake extends AngoPet {
     }
 
     public Snake(double width, double height) {
-        Color = "";
+        this.setColor("");
         rand = new Random();
         this.setWidth(width);
         this.setHeight(height);
@@ -34,31 +34,35 @@ public class Snake extends AngoPet {
         this.setY(50);
     }
 
+
     public void age(int age) {
-        int color = rand.nextInt(5);
-        if (color == 1) {
-            Color = "green_";;
-        }
-        if (color == 2) {
-            Color = "yellow_";
-        }
-        if (color == 3) {
-            Color = "blue_";;
-        }
-        if (color == 4) {
-            Color = "red_";;
-        }
-        if (color == 5) {
-            Color = "purple_";;
-        }
+
         if (age >= 0 && age <= 5) {
             img = new Image("file:PICS/babyDefault.png");
         }
         if (age > 5 && age <= 15) {
-            img = new Image("file:PICS/" + Color +"babySnake.png");
+            if (age == 6) {
+                this.changeColor();
+            }
+            img = new Image("file:PICS/" + this.getColor() +"babySnake.png");
         }
         if (age > 15 && age <= 25) {
-            img = new Image("file:PICS/" + Color +"teenSnake.png");
+            img = new Image("file:PICS/" + this.getColor() +"teenSnake.png");
+        }
+        if (age > 25 && age <= 35) {
+            if (age == 26) {
+                this.setWidth(this.getWidth() * 1.5);
+                this.setHeight(this.getHeight() * 1.5);
+            }
+
+            img = new Image("file:PICS/" + this.getColor() +"teenDragon.png");
+        }
+        if (age > 35 && age <= 45) {
+            if (age == 36) {
+                this.setWidth(this.getWidth() * 1.5);
+                this.setHeight(this.getHeight() * 1.5);
+            }
+            img = new Image("file:PICS/" + this.getColor() +"dragon.png");
         }
     }
 }

@@ -6,6 +6,8 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 
+import java.util.Random;
+
 /**
  * Represents the most basic version of an AngoPet
  */
@@ -13,12 +15,16 @@ public class AngoPet {
     /**
      * the image to be drawn instead of a ball
      */
+    private Random rand;
     public Image img;
+    private String color;
     private double x, y, width, height;
     private int hunger, happiness, xSpeed, ySpeed, age, horizontalFlip;
     private boolean isSick;
 
     public AngoPet(double width, double height) {
+        color = "";
+        rand = new Random();
         this.setWidth(width);
         this.setHeight(height);
         img = new Image("file:PICS/baby.jpg");
@@ -33,6 +39,8 @@ public class AngoPet {
         this.y = 50;
     }
     public AngoPet() {
+        rand = new Random();
+        color = "";
         this.xSpeed = 0;
         this.ySpeed = 0;
         img = new Image("file:PICS/baby.jpg");
@@ -91,7 +99,12 @@ public class AngoPet {
     public int getHappiness() {
         return this.happiness;
     }
-
+    public void setColor(String color) {
+        this.color = color;
+    }
+    public String getColor() {
+        return this.color;
+    }
     public boolean getIsSick() {
         return this.isSick;
     }
@@ -103,6 +116,24 @@ public class AngoPet {
     public void age(int age) {
         if (age >= 0 && age <= 5) {
             img = new Image("file:PICS/babyDefault.png");
+        }
+    }
+    public void changeColor() {
+        int color = rand.nextInt(5);
+        if (color == 1) {
+            this.color = "green_";;
+        }
+        if (color == 2) {
+            this.color = "yellow_";
+        }
+        if (color == 3) {
+            this.color = "blue_";;
+        }
+        if (color == 4) {
+            this.color = "red_";;
+        }
+        if (color == 5) {
+            this.color = "purple_";;
         }
     }
     public void flipHorizontal() {
