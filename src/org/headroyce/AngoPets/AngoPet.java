@@ -15,7 +15,7 @@ public class AngoPet {
      */
     public Image img;
     private double x, y, width, height;
-    private int hunger, happiness, xSpeed, ySpeed, age;
+    private int hunger, happiness, xSpeed, ySpeed, age, horizontalFlip;
     private boolean isSick;
 
     public AngoPet(double width, double height) {
@@ -23,6 +23,7 @@ public class AngoPet {
         this.setHeight(height);
         img = new Image("file:PICS/baby.jpg");
         this.isSick = false;
+        horizontalFlip = 1;
         this.hunger = 0;
         this.xSpeed = 1;
         this.ySpeed = 1;
@@ -104,13 +105,19 @@ public class AngoPet {
             img = new Image("file:PICS/babyDefault.png");
         }
     }
+    public void flipHorizontal() {
+        this.setWidth(this.horizontalFlip * -1);
+    }
 
     public void render( Canvas canvas ) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        this.setX(canvas.getWidth()/2 - this.getWidth()/2);
-        this.setY(canvas.getHeight()/2 - this.getHeight()/2);
         gc.setFill(new ImagePattern(img));
-        gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+        if (this.horizontalFlip < 0) {
+            gc.fillRect(this.getX() + Math.abs(this.getWidth()), canvas.getHeight() / 2 - this.getHeight() / 2, this.getWidth(), this.getHeight());
+        }
+        if (this.getWidth() > 0) {
+            gc.fillRect(this.getX(), canvas.getHeight() / 2 - this.getHeight() / 2, this.getWidth(), this.getHeight());
+        }
         gc.setFill(Color.BLACK);
         gc.fillText("Age: " + this.getAge(), canvas.getWidth()/2, 20);
     }

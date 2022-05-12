@@ -13,6 +13,8 @@ import java.util.Random;
  */
 public class GameLogic {
     private static final int STAT_TIMER = 1000;
+    private static final int WALK_TIMER = 1000;
+    private static final int GAME_STEP_TIMER = 100;
     private Random rand;
     private ArrayList<Button> buttons;
     private GameTimer gameTimer;
@@ -21,6 +23,7 @@ public class GameLogic {
     private String operation, playString;
     private AngoPet genderNeutralAngopet;
     private Stage stage;
+    private int walkingDistance = 20;
 
     public GameLogic() {
         stage = new Stage();
@@ -69,27 +72,47 @@ public class GameLogic {
         // The last nanosecond
         private long lastUpdate;
         private long statUpdate;
+        private long walkUpdate;
+
 
         public GameTimer() {
-            statUpdate = lastUpdate = 0;
+            statUpdate = lastUpdate = walkUpdate = 0;
         }
 
         @Override
         public void handle(long now) {
 
-            long scoring_time_elapsed = (now - lastUpdate) / 1000000;
-            if (scoring_time_elapsed > STAT_TIMER) {
+            long stat_time_elapsed = (now - statUpdate) / 1000000;
+            long walk_time_elapsed = (now - walkUpdate) / 1000000;
+            long time_elapsed = (now - lastUpdate) / 1000000;
+
+            if (stat_time_elapsed > STAT_TIMER) {
                 genderNeutralAngopet.setAge(genderNeutralAngopet.getAge() + 1);
                 genderNeutralAngopet.age(genderNeutralAngopet.getAge());
                 statUpdate = now;
+            }
+
+            if (walk_time_elapsed > WALK_TIMER) {
+                System.out.println("bruh");
+                genderNeutralAngopet.setX(genderNeutralAngopet.getX() + walkingDistance);
+                walkUpdate = now;
+            }
+            if (time_elapsed > GAME_STEP_TIMER) {
                 lastUpdate = now;
             }
+            lastUpdate = now;
             genderNeutralAngopet.move();
 
             for(int i = 0; i < buttons.size(); i++) {
                 if (buttons.get(i).isOn()) {
                     stage.setSet(buttons.get(i).getStage());
                 }
+            }
+            if (genderNeutralAngopet.getX() + genderNeutralAngopet.getWidth() > canvasWidth ) {
+                walkingDistance = -20;
+            }
+            if (genderNeutralAngopet.getX() < 0) {
+                walkingDistance = 20;
             }
 
             if (stage.getSet() == "StartingScreen") {
@@ -123,6 +146,7 @@ public class GameLogic {
                         c.setText("Back");
                         c.setColor(Color.RED);
                         buttons.add(c);
+
 
                     }
                     for (int i = 0; i < buttons.size(); i++) {
@@ -178,6 +202,7 @@ public class GameLogic {
                     playString = int1 + " " + operation + " " + int2 + " =";
                     stage.setPlayString(playString);
                 }
+                genderNeutralAngopet.setY(canvasHeight/2 - genderNeutralAngopet.getHeight()/2);
             }
 
         }
