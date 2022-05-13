@@ -93,7 +93,6 @@ public class GameLogic {
             }
 
             if (walk_time_elapsed > WALK_TIMER) {
-                System.out.println("bruh");
                 genderNeutralAngopet.setX(genderNeutralAngopet.getX() + walkingDistance);
                 walkUpdate = now;
             }
@@ -129,7 +128,7 @@ public class GameLogic {
                 buttons.add(a);
             }
 
-                if (stage.getSet() == "Play") {
+                if (stage.getSet().equals("Play")) {
                     if (buttons.size() != 11) {
                         playString = "";
                         buttons.clear();
@@ -138,6 +137,8 @@ public class GameLogic {
                             e.setX(rand.nextInt((int) canvasWidth));
                             e.setY(-e.getHeight());
                             e.setColor(Color.RED);
+                            e.setWidth(50);
+                            e.setHeight(20);
                             e.setYSpeed(rand.nextDouble(5));
                             e.setXSpeed(rand.nextDouble(5) * 2 - 5);
                             buttons.add(e);
@@ -146,19 +147,9 @@ public class GameLogic {
                         c.setText("Back");
                         c.setColor(Color.RED);
                         buttons.add(c);
-
-
-                    }
-                    for (int i = 0; i < buttons.size(); i++) {
-                        if (buttons.get(i).getX() + buttons.get(i).getWidth() > canvasWidth) {
-                            buttons.get(i).setXSpeed(Math.abs(buttons.get(i).getXSpeed()) * -1);
-                        }
-                        if (buttons.get(i).getX() < 0) {
-                            buttons.get(i).setXSpeed(Math.abs(buttons.get(i).getXSpeed()));
-                        }
                     }
 
-                if (playString == "") {
+                if (playString.isEmpty()) {
                     if (genderNeutralAngopet.getAge() < 5) {
                         int1 = rand.nextInt(10);
                         int2 = rand.nextInt(10);
@@ -201,7 +192,9 @@ public class GameLogic {
                     }
                     playString = int1 + " " + operation + " " + int2 + " =";
                     stage.setPlayString(playString);
+
                 }
+
                 genderNeutralAngopet.setY(canvasHeight/2 - genderNeutralAngopet.getHeight()/2);
             }
 
@@ -216,6 +209,32 @@ public class GameLogic {
         canvasWidth = canvas.getWidth();
         canvasHeight = canvas.getHeight();
         stage.render(canvas);
+
+        if (stage.getSet().equals("Play")) {
+
+            for (int i = 0; i < buttons.size(); i++) {
+
+                if (buttons.get(i).getX() + buttons.get(i).getWidth() > canvasWidth) {
+                    buttons.get(i).setXSpeed(Math.abs(buttons.get(i).getXSpeed()) * -1);
+                }
+                if (buttons.get(i).getX() < 0) {
+                    buttons.get(i).setXSpeed(Math.abs(buttons.get(i).getXSpeed()));
+                }
+                if (buttons.get(i).getY() + buttons.get(i).getHeight() > canvasHeight) {
+                    buttons.remove(i);
+                    NumberButton e = new NumberButton();
+                    e.setX(rand.nextInt((int) canvasWidth));
+                    e.setY(-e.getHeight());
+                    e.setColor(Color.RED);
+                    e.setWidth(50);
+                    e.setHeight(20);
+                    e.setYSpeed(rand.nextDouble(5));
+                    e.setXSpeed(rand.nextDouble(5) * 2 - 5);
+                    buttons.add(e);
+                }
+            }
+        }
+
         for(int i = 0; i < buttons.size(); i++) {
             buttons.get(i).render(canvas);
         }

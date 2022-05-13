@@ -167,6 +167,11 @@ public class Button {
         }
     }
 
+    public void move() {
+        this.x += this.getXSpeed();
+        this.y += this.getYSpeed();
+    }
+
     /**
      * Gets the current stage of the canvas
      * @return the

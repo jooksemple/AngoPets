@@ -27,7 +27,7 @@ public class AngoPet {
         rand = new Random();
         this.setWidth(width);
         this.setHeight(height);
-        img = new Image("file:PICS/baby.jpg");
+        img = new Image("file:PICS/babyDefault.jpg");
         this.isSick = false;
         horizontalFlip = 1;
         this.hunger = 0;
@@ -43,7 +43,7 @@ public class AngoPet {
         color = "";
         this.xSpeed = 0;
         this.ySpeed = 0;
-        img = new Image("file:PICS/baby.jpg");
+        img = new Image("file:PICS/babyDefault.jpg");
         this.isSick = false;
         this.hunger = 0;
         this.happiness = 0;

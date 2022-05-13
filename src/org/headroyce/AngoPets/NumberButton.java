@@ -13,7 +13,6 @@ import java.util.Random;
 public class NumberButton extends Button{
     private int number;
     private Random rand;
-    private double x, y;
 
     public NumberButton(double x, double y, double width, double height) {
         this.setIsOn(false);
@@ -28,8 +27,6 @@ public class NumberButton extends Button{
 
     }
     public NumberButton() {
-        this.x = 0;
-        this.y = 0;
         this.setXSpeed(0);
         this.setYSpeed(0);
         this.setWidth(50);
@@ -49,11 +46,6 @@ public class NumberButton extends Button{
 
     }
 
-    public void move() {
-        this.x += this.getXSpeed();
-        this.y += this.getYSpeed();
-    }
-
     /**
      * Renders the game elements onto a canvas
      * @param canvas the canvas to render onto
@@ -68,7 +60,7 @@ public class NumberButton extends Button{
             gc.setFill(this.getColor().invert());
             gc.setTextAlign(TextAlignment.CENTER);
             gc.setTextBaseline(VPos.CENTER);
-            gc.fillText(this.getText(), this.x + this.getWidth() / 2, this.y + this.getHeight() / 2);
+            gc.fillText(this.getText(), this.getX() + this.getWidth() / 2, this.getY() + this.getHeight() / 2);
         }
     }
 

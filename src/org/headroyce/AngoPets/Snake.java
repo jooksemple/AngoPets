@@ -11,8 +11,8 @@ public class Snake extends AngoPet {
     private Random rand;
 
     public Snake() {
-        this.setColor("_green");
         rand = new Random();
+        this.changeColor();
         img = new Image("file:PICS/babyDefault.png");
         this.setIsSick(false);
         this.setHunger(0);
@@ -22,8 +22,8 @@ public class Snake extends AngoPet {
     }
 
     public Snake(double width, double height) {
-        this.setColor("_green");
         rand = new Random();
+        this.changeColor();
         this.setWidth(width);
         this.setHeight(height);
         img = new Image("file:PICS/babyDefault.png");
