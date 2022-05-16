@@ -17,9 +17,9 @@ public class AngoPet {
      */
     private Random rand;
     public Image img;
-    private String color;
+    private String color, mood;
     private double x, y, width, height;
-    private int hunger, happiness, xSpeed, ySpeed, age, horizontalFlip;
+    private int hunger, xSpeed, ySpeed, age, health, horizontalFlip;
     private boolean isSick;
 
     public AngoPet(double width, double height) {
@@ -30,11 +30,12 @@ public class AngoPet {
         img = new Image("file:PICS/babyDefault.png");
         this.isSick = false;
         horizontalFlip = 1;
-        this.hunger = 0;
+        this.health = 10;
+        this.hunger = 10;
         this.xSpeed = 1;
         this.ySpeed = 1;
         this.age = 0;
-        this.happiness = 0;
+        this.mood = "Bored";
         this.x = 50;
         this.y = 50;
     }
@@ -45,8 +46,9 @@ public class AngoPet {
         this.ySpeed = 0;
         img = new Image("file:PICS/babyDefault.png");
         this.isSick = false;
+        this.health = 10;
         this.hunger = 0;
-        this.happiness = 0;
+        this.mood = "Bored";
         this.age = 0;
         this.x = 50;
         this.y = 50;
@@ -68,6 +70,7 @@ public class AngoPet {
         return this.height;
     }
     public int getAge() { return this.age; }
+    public int getHealth() { return this.health; }
 
     public void setX(double x) {
       this.x = x;
@@ -87,17 +90,18 @@ public class AngoPet {
     public void setHunger( int hunger) {
         this.hunger = hunger;
     }
-    public void setHappiness( int happiness) {
-        this.happiness = happiness;
+    public void setMood( String mood) {
+        this.mood = mood;
     }
     public void setIsSick(boolean isSick) {
         this.isSick = isSick;
     }
+    public void setHealth(int health) {this.health = health;}
     public int getHunger() {
         return this.hunger;
     }
-    public int getHappiness() {
-        return this.happiness;
+    public String getMood() {
+        return this.mood;
     }
     public void setColor(String color) {
         this.color = color;
@@ -109,10 +113,6 @@ public class AngoPet {
         return this.isSick;
     }
 
-    public void move() {
-        this.x += this.xSpeed;
-        this.y += this.ySpeed;
-    }
     public void age(int age) {
         if (age >= 0 && age <= 5) {
             img = new Image("file:PICS/babyDefault.png");
@@ -150,6 +150,6 @@ public class AngoPet {
             gc.fillRect(this.getX(), canvas.getHeight() / 2 - this.getHeight() / 2, this.getWidth(), this.getHeight());
         }
         gc.setFill(Color.BLACK);
-        gc.fillText("Age: " + this.getAge(), canvas.getWidth()/2, 20);
+        gc.fillText("Age: " + this.getAge(), canvas.getWidth()/2, 10);
     }
 }

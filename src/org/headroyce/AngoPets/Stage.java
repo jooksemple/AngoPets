@@ -53,7 +53,7 @@ public class Stage {
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
         //what the play screen will look like
-        if (set == "Play") {
+        if (set == "PlayOne") {
 
             gc.setFill(Color.GREEN);
             gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -64,7 +64,6 @@ public class Stage {
         }
         //what the starting screen will look like
         if (set == "StartingScreen") {
-
             gc.setFill(Color.ALICEBLUE);
             gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         }

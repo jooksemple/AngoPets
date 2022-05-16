@@ -14,7 +14,7 @@ public class Bear extends AngoPet {
         img = new Image("file:PICS/babyDefault.png");
         this.setIsSick(false);
         this.setHunger(0);
-        this.setHappiness(0);
+        this.setMood("Bored");
         this.setX(50);
         this.setY(50);
     }

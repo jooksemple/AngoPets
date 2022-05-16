@@ -16,7 +16,7 @@ public class Snake extends AngoPet {
         img = new Image("file:PICS/babyDefault.png");
         this.setIsSick(false);
         this.setHunger(0);
-        this.setHappiness(0);
+        this.setMood("Bored");
         this.setX(50);
         this.setY(50);
     }
@@ -26,10 +26,10 @@ public class Snake extends AngoPet {
         this.changeColor();
         this.setWidth(width);
         this.setHeight(height);
+        this.setMood("Bored");
         img = new Image("file:PICS/babyDefault.png");
         this.setIsSick(false);
         this.setHunger(0);
-        this.setHappiness(0);
         this.setX(50);
         this.setY(50);
     }

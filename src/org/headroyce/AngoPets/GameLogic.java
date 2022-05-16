@@ -12,10 +12,11 @@ import java.util.Random;
  * Represents the logic of the game
  */
 public class GameLogic {
-    private static final int STAT_TIMER = 1000;
+    private static final int HUNGER_TIMER = 100000;
+    private static final int AGE_TIMER = 1000;
     private static final int WALK_TIMER = 1000;
     private static final int GAME_STEP_TIMER = 100;
-    private Bar hunger;
+    private Bar hunger, health;
     private Random rand;
     private ArrayList<Button> buttons;
     private GameTimer gameTimer;
@@ -26,12 +27,19 @@ public class GameLogic {
     private Stage stage;
     private int walkingDistance = 20;
     private double equals;
+    private boolean gameOver;
 
     public GameLogic() {
+        gameOver = false;
         stage = new Stage();
         hunger = new Bar();
         hunger.setText("Hunger");
         hunger.setColor(Color.BROWN);
+
+        health = new Bar();
+        health.setText("Health");
+        health.setColor(Color.DARKRED);
+
         buttons = new ArrayList<>();
         rand = new Random();
         gameTimer = new GameTimer();
@@ -77,70 +85,90 @@ public class GameLogic {
     private class GameTimer extends AnimationTimer {
         // The last nanosecond
         private long lastUpdate;
-        private long statUpdate;
+        private long hungerUpdate;
         private long walkUpdate;
+        private long ageUpdate;
 
 
         public GameTimer() {
-            statUpdate = lastUpdate = walkUpdate = 0;
+            ageUpdate = lastUpdate = walkUpdate = hungerUpdate = 0;
         }
 
         @Override
         public void handle(long now) {
+            if (gameOver == false) {
+                long age_time_elapsed = (now - ageUpdate) / 1000000;
+                long walk_time_elapsed = (now - walkUpdate) / 1000000;
+                long time_elapsed = (now - lastUpdate) / 1000000;
+                long hunger_time_elapsed = (now - hungerUpdate) / 1000000;
 
-            long stat_time_elapsed = (now - statUpdate) / 1000000;
-            long walk_time_elapsed = (now - walkUpdate) / 1000000;
-            long time_elapsed = (now - lastUpdate) / 1000000;
-
-            if (stat_time_elapsed > STAT_TIMER) {
-                genderNeutralAngopet.setAge(genderNeutralAngopet.getAge() + 1);
-                genderNeutralAngopet.age(genderNeutralAngopet.getAge());
-                statUpdate = now;
-            }
-
-            if (walk_time_elapsed > WALK_TIMER) {
-                genderNeutralAngopet.setX(genderNeutralAngopet.getX() + walkingDistance);
-                walkUpdate = now;
-            }
-            if (time_elapsed > GAME_STEP_TIMER) {
-                lastUpdate = now;
-            }
-            lastUpdate = now;
-            genderNeutralAngopet.move();
-
-            for(int i = 0; i < buttons.size(); i++) {
-                if (buttons.get(i).isOn()) {
-                    stage.setSet(buttons.get(i).getStage());
+                if (age_time_elapsed > AGE_TIMER) {
+                    genderNeutralAngopet.setAge(genderNeutralAngopet.getAge() + 1);
+                    genderNeutralAngopet.age(genderNeutralAngopet.getAge());
+                    ageUpdate = now;
                 }
-            }
-            if (genderNeutralAngopet.getX() + genderNeutralAngopet.getWidth() > canvasWidth ) {
-                walkingDistance = -20;
-            }
-            if (genderNeutralAngopet.getX() < 0) {
-                walkingDistance = 20;
-            }
 
-            if (stage.getSet() == "StartingScreen") {
-                hunger.setShowing(true);
-                hunger.setWidth(genderNeutralAngopet.getHunger() * 20);
-                hunger.setX(canvasWidth/2 - hunger.getWidth()/2);
-                hunger.setY(30);
+                if (walk_time_elapsed > WALK_TIMER) {
+                    genderNeutralAngopet.setX(genderNeutralAngopet.getX() + walkingDistance);
+                    walkUpdate = now;
+                }
+                if (hunger_time_elapsed > HUNGER_TIMER) {
+                    if (genderNeutralAngopet.getHunger() > 0) {
+                        genderNeutralAngopet.setHunger(genderNeutralAngopet.getHunger() - 1);
+                    } else {
+                        genderNeutralAngopet.setHealth(genderNeutralAngopet.getHealth() - 1);
+                    }
+                    hungerUpdate = now;
+                }
 
-                buttons.clear();
+                if (time_elapsed > GAME_STEP_TIMER) {
+                    lastUpdate = now;
+                }
+                lastUpdate = now;
 
-                PlayButton e = new PlayButton(400, 50, 50, 20);
-                e.setColor(Color.RED);
-                e.setText("PLAY");
-                buttons.add(e);
 
-                MenuButton a = new MenuButton(100, 50, 50, 20);
-                a.setColor(Color.RED);
-                a.setText("MENU");
-                buttons.add(a);
-            }
+                if (genderNeutralAngopet.getHealth() <= 0) {
+                    gameOver = true;
+                }
+                for (int i = 0; i < buttons.size(); i++) {
+                    if (buttons.get(i).isOn()) {
+                        stage.setSet(buttons.get(i).getStage());
+                    }
+                }
+                if (genderNeutralAngopet.getX() + genderNeutralAngopet.getWidth() > canvasWidth) {
+                    walkingDistance = -20;
+                }
+                if (genderNeutralAngopet.getX() < 0) {
+                    walkingDistance = 20;
+                }
 
-                if (stage.getSet().equals("Play")) {
+                if (stage.getSet() == "StartingScreen") {
+                    hunger.setShowing(true);
+                    hunger.setWidth(genderNeutralAngopet.getHunger() * 20);
+                    hunger.setX(canvasWidth / 2 - hunger.getWidth() / 2);
+                    hunger.setY(30);
+
+                    health.setShowing(true);
+                    health.setWidth(genderNeutralAngopet.getHealth() * 20);
+                    health.setX(canvasWidth / 2 - health.getWidth() / 2);
+                    health.setY(70);
+
+                    buttons.clear();
+
+                    PlayButton e = new PlayButton((canvasWidth / 8 * 7) - 25, 10, 50, 20);
+                    e.setColor(Color.RED);
+                    e.setText("Play");
+                    buttons.add(e);
+
+                    MenuButton a = new MenuButton((canvasWidth / 8) - 25, 10, 50, 20);
+                    a.setColor(Color.RED);
+                    a.setText("MENU");
+                    buttons.add(a);
+                }
+
+                if (stage.getSet().equals("PlayOne")) {
                     hunger.setShowing(false);
+                    health.setShowing(false);
                     if (buttons.size() != 11) {
                         playString = "";
                         buttons.clear();
@@ -159,15 +187,29 @@ public class GameLogic {
                             }
                             buttons.add(e);
                         }
-                        Button c = new Button(500, 20, 50, 20);
+                        Button c = new Button((canvasWidth / 4 * 3) - 25, 10, 50, 20);
                         c.setText("Back");
                         c.setColor(Color.RED);
                         buttons.add(c);
                     }
-                    for (int i = 0; i < buttons.size(); i ++) {
+                    for (int i = 0; i < buttons.size(); i++) {
                         if (buttons.get(i).isOn()) {
                             if (buttons.get(i).getNumber() == equals) {
-                                genderNeutralAngopet.setHunger(genderNeutralAngopet.getHunger() - 1);
+                                genderNeutralAngopet.setHunger(genderNeutralAngopet.getHunger() + 1);
+                                buttons.remove(i);
+                                NumberButton e = new NumberButton();
+                                e.setX(rand.nextInt((int) canvasWidth));
+                                e.setY(-e.getHeight());
+                                e.setColor(Color.DARKBLUE);
+                                e.setWidth(50);
+                                e.setHeight(20);
+                                e.setYSpeed(rand.nextDouble(5));
+                                e.setXSpeed(rand.nextDouble(5) * 2 - 5);
+                                e.setNumber(rand.nextInt(50) - 25);
+                                if (i == 5) {
+                                    e.setNumber(equals);
+                                }
+                                buttons.add(e);
                             }
                         }
                     }
@@ -226,10 +268,10 @@ public class GameLogic {
                     }
                 }
 
-                genderNeutralAngopet.setY(canvasHeight/2 - genderNeutralAngopet.getHeight()/2);
+                genderNeutralAngopet.setY(canvasHeight / 2 - genderNeutralAngopet.getHeight() / 2);
             }
-
         }
+    }
 
     /**
      * Renders the game elements onto a canvas
@@ -241,7 +283,7 @@ public class GameLogic {
         stage.render(canvas);
 
 
-        if (stage.getSet().equals("Play")) {
+        if (stage.getSet().equals("PlayOne")) {
 
             for (int i = 0; i < buttons.size(); i++) {
 
@@ -275,6 +317,7 @@ public class GameLogic {
             buttons.get(i).render(canvas);
         }
         hunger.render(canvas);
+        health.render(canvas);
         if (stage.getSet() == "StartingScreen") {
             genderNeutralAngopet.render(canvas);
 

@@ -32,7 +32,7 @@ public class NumberButton extends Button{
     }
 
     public String getStage() {
-        return "Play";
+        return "PlayOne";
     }
 
     public void click() {

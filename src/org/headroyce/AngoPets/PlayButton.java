@@ -12,6 +12,6 @@ public class PlayButton extends Button {
         this.setHeight(height);
     }
     public String getStage() {
-        return "Play";
+        return "PlayOne";
     }
 }
