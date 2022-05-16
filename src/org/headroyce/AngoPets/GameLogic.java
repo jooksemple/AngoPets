@@ -77,9 +77,9 @@ public class GameLogic {
 
     }
 
-    public void keyPress(KeyEvent key) {
-        if (key. == KeyCode.RIGHT) {
-
+    public void keyPress(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.RIGHT) {
+            ship.setXSpeed(5);
         }
     }
 
