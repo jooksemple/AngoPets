@@ -11,7 +11,6 @@ import java.util.Random;
  * Represents the buttons of the Asteroid game
  */
 public class NumberButton extends Button{
-    private int number;
     private Random rand;
 
     public NumberButton(double x, double y, double width, double height) {
@@ -23,8 +22,6 @@ public class NumberButton extends Button{
         this.setXSpeed(0);
         this.setYSpeed(0);
         rand = new Random();
-        this.number = rand.nextInt(50);
-
     }
     public NumberButton() {
         this.setXSpeed(0);
@@ -32,7 +29,6 @@ public class NumberButton extends Button{
         this.setWidth(50);
         this.setHeight(50);
         rand = new Random();
-        this.number = rand.nextInt(50);
     }
 
     public String getStage() {
@@ -41,7 +37,7 @@ public class NumberButton extends Button{
 
     public void click() {
         if (this.getIsShowing()) {
-            this.setIsOn(!this.isOn());
+            this.setIsOn(true);
         }
 
     }
@@ -52,7 +48,10 @@ public class NumberButton extends Button{
      */
     public void render( Canvas canvas ) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
-
+        String num = "" + this.getNumber();
+        if (num.charAt(num.length() - 1) =='0' && num.charAt(num.length() - 2) =='.') {
+            num = "" + (int) this.getNumber();
+        }
         if (this.getIsShowing()) {
             this.move();
             gc.setFill(this.getColor());
@@ -60,7 +59,7 @@ public class NumberButton extends Button{
             gc.setFill(this.getColor().invert());
             gc.setTextAlign(TextAlignment.CENTER);
             gc.setTextBaseline(VPos.CENTER);
-            gc.fillText(this.getText(), this.getX() + this.getWidth() / 2, this.getY() + this.getHeight() / 2);
+            gc.fillText(num, this.getX() + this.getWidth() / 2, this.getY() + this.getHeight() / 2);
         }
     }
 

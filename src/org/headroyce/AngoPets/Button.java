@@ -14,6 +14,7 @@ public class Button {
     private String text;
     private Color color;
     private boolean isOn;
+    private double number;
     private boolean isShowing;
 
     /**
@@ -26,7 +27,9 @@ public class Button {
         this.y = 0;
         this.width = 40;
         this.height = 40;
+        this.number = 0;
         this.text = "text";
+
     }
 
     /**
@@ -43,6 +46,7 @@ public class Button {
         this.y = y;
         this.width = width;
         this.height = height;
+        this.number = 0;
     }
 
     /**
@@ -158,6 +162,9 @@ public class Button {
      */
     public void setYSpeed(double ySpeed) {this.ySpeed = ySpeed; }
 
+    public void setNumber(double number) {
+        this.number = number;
+    }
     /**
      * Changes the status of isOn if the button has been clicked
      */
@@ -172,6 +179,9 @@ public class Button {
         this.y += this.getYSpeed();
     }
 
+    public double getNumber() {
+        return this.number;
+    }
     /**
      * Gets the current stage of the canvas
      * @return the
@@ -200,6 +210,7 @@ public class Button {
             gc.setFill(this.color.invert());
             gc.setTextAlign(TextAlignment.CENTER);
             gc.setTextBaseline(VPos.CENTER);
+
             gc.fillText(this.text, this.x + this.width / 2, this.y + this.height / 2);
         }
     }

@@ -15,24 +15,30 @@ public class GameLogic {
     private static final int STAT_TIMER = 1000;
     private static final int WALK_TIMER = 1000;
     private static final int GAME_STEP_TIMER = 100;
+    private Bar hunger;
     private Random rand;
     private ArrayList<Button> buttons;
     private GameTimer gameTimer;
     private double canvasWidth, canvasHeight;
-    private int int1, int2;
+    private double double1, double2;
     private String operation, playString;
     private AngoPet genderNeutralAngopet;
     private Stage stage;
     private int walkingDistance = 20;
+    private double equals;
 
     public GameLogic() {
         stage = new Stage();
+        hunger = new Bar();
+        hunger.setText("Hunger");
+        hunger.setColor(Color.BROWN);
         buttons = new ArrayList<>();
         rand = new Random();
         gameTimer = new GameTimer();
         genderNeutralAngopet = new Snake(85, 70);
-        int1 = rand.nextInt(10);
-        int2 = rand.nextInt(10);
+        genderNeutralAngopet.setHunger(10);
+        double1 = rand.nextInt(10);
+        double2 = rand.nextInt(10);
         operation = "add";
         playString = "";
         gameTimer.start();
@@ -115,6 +121,11 @@ public class GameLogic {
             }
 
             if (stage.getSet() == "StartingScreen") {
+                hunger.setShowing(true);
+                hunger.setWidth(genderNeutralAngopet.getHunger() * 20);
+                hunger.setX(canvasWidth/2 - hunger.getWidth()/2);
+                hunger.setY(30);
+
                 buttons.clear();
 
                 PlayButton e = new PlayButton(400, 50, 50, 20);
@@ -129,6 +140,7 @@ public class GameLogic {
             }
 
                 if (stage.getSet().equals("Play")) {
+                    hunger.setShowing(false);
                     if (buttons.size() != 11) {
                         playString = "";
                         buttons.clear();
@@ -136,11 +148,15 @@ public class GameLogic {
                             NumberButton e = new NumberButton();
                             e.setX(rand.nextInt((int) canvasWidth));
                             e.setY(-e.getHeight());
-                            e.setColor(Color.RED);
+                            e.setColor(Color.DARKBLUE);
                             e.setWidth(50);
                             e.setHeight(20);
                             e.setYSpeed(rand.nextDouble(5));
                             e.setXSpeed(rand.nextDouble(5) * 2 - 5);
+                            e.setNumber(rand.nextInt(50) - 25);
+                            if (i == 5) {
+                                e.setNumber(equals);
+                            }
                             buttons.add(e);
                         }
                         Button c = new Button(500, 20, 50, 20);
@@ -148,58 +164,72 @@ public class GameLogic {
                         c.setColor(Color.RED);
                         buttons.add(c);
                     }
+                    for (int i = 0; i < buttons.size(); i ++) {
+                        if (buttons.get(i).isOn()) {
+                            if (buttons.get(i).getNumber() == equals) {
+                                genderNeutralAngopet.setHunger(genderNeutralAngopet.getHunger() - 1);
+                            }
+                        }
+                    }
 
-                if (playString.isEmpty()) {
-                    if (genderNeutralAngopet.getAge() < 5) {
-                        int1 = rand.nextInt(10);
-                        int2 = rand.nextInt(10);
-                        operation = "+";
-                    }
-                    if (genderNeutralAngopet.getAge() > 5 && genderNeutralAngopet.getAge() < 15) {
-                        int1 = rand.nextInt(20);
-                        int2 = rand.nextInt(20);
-                        operation = "-";
-                    }
-                    if (genderNeutralAngopet.getAge() > 15 && genderNeutralAngopet.getAge() < 25) {
-                        int1 = rand.nextInt(10);
-                        int2 = rand.nextInt(10);
-                        int op = rand.nextInt(2);
-                        if (op == 1) {
-                            operation = "*";
-                        } else {
-                            operation = "/";
+                    if (playString.isEmpty()) {
+                        if (genderNeutralAngopet.getAge() < 5) {
+                            double1 = rand.nextInt(10);
+                            double2 = rand.nextInt(10);
+                            operation = "+";
+                            equals = double1 + double2;
                         }
-                    }
-                    if (genderNeutralAngopet.getAge() > 25 && genderNeutralAngopet.getAge() < 35) {
-                        int1 = rand.nextInt(20) - 10;
-                        int2 = rand.nextInt(20) - 10;
-                        int op = rand.nextInt(2);
-                        if (op == 1) {
-                            operation = "*";
-                        } else {
-                            operation = "/";
+                        if (genderNeutralAngopet.getAge() > 5 && genderNeutralAngopet.getAge() < 15) {
+                            double1 = rand.nextInt(20);
+                            double2 = rand.nextInt(20);
+                            operation = "-";
+                            equals = double1 - double2;
                         }
-                    }
-                    if (genderNeutralAngopet.getAge() > 35 && genderNeutralAngopet.getAge() < 45) {
-                        int1 = rand.nextInt(40) - 20;
-                        int2 = rand.nextInt(40) - 20;
-                        int op = rand.nextInt(2);
-                        if (op == 1) {
-                            operation = "*";
-                        } else {
-                            operation = "/";
+                        if (genderNeutralAngopet.getAge() > 15 && genderNeutralAngopet.getAge() < 25) {
+                            double1 = rand.nextInt(10);
+                            double2 = rand.nextInt(10);
+                            int op = rand.nextInt(2);
+                            if (op == 1) {
+                                operation = "*";
+                                equals = double1 * double2;
+                            } else {
+                                operation = "/";
+                                equals = double1 / double2;
+                            }
                         }
+                        if (genderNeutralAngopet.getAge() > 25 && genderNeutralAngopet.getAge() < 35) {
+                            double1 = rand.nextInt(20) - 10;
+                            double2 = rand.nextInt(20) - 10;
+                            int op = rand.nextInt(2);
+                            if (op == 1) {
+                                operation = "*";
+                                equals = double1 * double2;
+                            } else {
+                                operation = "/";
+                                equals = double1 / double2;
+                            }
+                        }
+                        if (genderNeutralAngopet.getAge() > 35 && genderNeutralAngopet.getAge() < 45) {
+                            double1 = rand.nextInt(40) - 20;
+                            double2 = rand.nextInt(40) - 20;
+                            int op = rand.nextInt(2);
+                            if (op == 1) {
+                                operation = "*";
+                                equals = double1 * double2;
+                            } else {
+                                operation = "/";
+                                equals = double1 / double2;
+                            }
+                        }
+                        playString = double1 + " " + operation + " " + double2 + " =";
+                        stage.setPlayString(playString);
                     }
-                    playString = int1 + " " + operation + " " + int2 + " =";
-                    stage.setPlayString(playString);
-
                 }
 
                 genderNeutralAngopet.setY(canvasHeight/2 - genderNeutralAngopet.getHeight()/2);
             }
 
         }
-    }
 
     /**
      * Renders the game elements onto a canvas
@@ -209,6 +239,7 @@ public class GameLogic {
         canvasWidth = canvas.getWidth();
         canvasHeight = canvas.getHeight();
         stage.render(canvas);
+
 
         if (stage.getSet().equals("Play")) {
 
@@ -221,15 +252,20 @@ public class GameLogic {
                     buttons.get(i).setXSpeed(Math.abs(buttons.get(i).getXSpeed()));
                 }
                 if (buttons.get(i).getY() + buttons.get(i).getHeight() > canvasHeight) {
+
                     buttons.remove(i);
                     NumberButton e = new NumberButton();
                     e.setX(rand.nextInt((int) canvasWidth));
                     e.setY(-e.getHeight());
-                    e.setColor(Color.RED);
+                    e.setColor(Color.DARKBLUE);
                     e.setWidth(50);
                     e.setHeight(20);
                     e.setYSpeed(rand.nextDouble(5));
                     e.setXSpeed(rand.nextDouble(5) * 2 - 5);
+                    e.setNumber(rand.nextInt(50) - 25);
+                    if (i == 5) {
+                        e.setNumber(equals);
+                    }
                     buttons.add(e);
                 }
             }
@@ -238,9 +274,10 @@ public class GameLogic {
         for(int i = 0; i < buttons.size(); i++) {
             buttons.get(i).render(canvas);
         }
-        
+        hunger.render(canvas);
         if (stage.getSet() == "StartingScreen") {
             genderNeutralAngopet.render(canvas);
+
         }
 
     }
