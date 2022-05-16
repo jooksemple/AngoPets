@@ -78,7 +78,7 @@ public class GameLogic {
     }
 
     public void keyPress(KeyEvent key) {
-        if (KeyEvent.KEY_PRESSED. == KeyCode.RIGHT) {
+        if (key. == KeyCode.RIGHT) {
 
         }
     }

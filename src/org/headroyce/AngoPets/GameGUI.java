@@ -40,7 +40,7 @@ public class GameGUI extends StackPane {
             public void handle(KeyEvent keyEvent) {
                 logic.keyPress(keyEvent);
             }
-        })
+        });
         animTimer.start();
     }
 
