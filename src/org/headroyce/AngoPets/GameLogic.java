@@ -12,7 +12,7 @@ import java.util.Random;
  * Represents the logic of the game
  */
 public class GameLogic {
-    private static final int HUNGER_TIMER = 100000;
+    private static final int HUNGER_TIMER = 1000;
     private static final int AGE_TIMER = 1000;
     private static final int WALK_TIMER = 1000;
     private static final int GAME_STEP_TIMER = 100;
@@ -179,8 +179,8 @@ public class GameLogic {
                             e.setColor(Color.DARKBLUE);
                             e.setWidth(50);
                             e.setHeight(20);
-                            e.setYSpeed(rand.nextDouble(5));
-                            e.setXSpeed(rand.nextDouble(5) * 2 - 5);
+                            e.setYSpeed(rand.nextDouble(3));
+                            e.setXSpeed(rand.nextDouble(3) * 2 - 3);
                             e.setNumber(rand.nextInt(50) - 25);
                             if (i == 5) {
                                 e.setNumber(equals);
@@ -203,8 +203,8 @@ public class GameLogic {
                                 e.setColor(Color.DARKBLUE);
                                 e.setWidth(50);
                                 e.setHeight(20);
-                                e.setYSpeed(rand.nextDouble(5));
-                                e.setXSpeed(rand.nextDouble(5) * 2 - 5);
+                                e.setYSpeed(rand.nextDouble(3));
+                                e.setXSpeed(rand.nextDouble(3) * 2 - 3);
                                 e.setNumber(rand.nextInt(50) - 25);
                                 if (i == 5) {
                                     e.setNumber(equals);
@@ -302,8 +302,8 @@ public class GameLogic {
                     e.setColor(Color.DARKBLUE);
                     e.setWidth(50);
                     e.setHeight(20);
-                    e.setYSpeed(rand.nextDouble(5));
-                    e.setXSpeed(rand.nextDouble(5) * 2 - 5);
+                    e.setYSpeed(rand.nextDouble(3));
+                    e.setXSpeed(rand.nextDouble(3) * 2 - 3);
                     e.setNumber(rand.nextInt(50) - 25);
                     if (i == 5) {
                         e.setNumber(equals);
