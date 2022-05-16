@@ -11,7 +11,7 @@ import javafx.scene.text.TextAlignment;
  */
 public class Button {
     private double x, y, width, height, xSpeed, ySpeed;
-    private String text;
+    private String text, stage;
     private Color color;
     private boolean isOn;
     private double number;
@@ -21,6 +21,7 @@ public class Button {
      * Creates a standard button
      */
     public Button() {
+        stage = "StartingScreen";
         isOn = false;
         isShowing = true;
         this.x = 0;
@@ -187,13 +188,16 @@ public class Button {
      * @return the
      */
     public String getStage() {
-        return "StartingScreen";
+        return stage;
     }
 
     /**
      * Gets the
      * @return
      */
+    public void setStage(String stage) {
+        this.stage = stage;
+    }
     public boolean getIsShowing() {
         return this.isShowing;
     }

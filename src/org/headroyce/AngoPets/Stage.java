@@ -62,6 +62,10 @@ public class Stage {
             gc.setTextBaseline(VPos.CENTER);
             gc.fillText(playString, canvas.getWidth()/2, canvas.getHeight()/2);
         }
+        if (set == "PlayTwo") {
+            gc.setFill(Color.BLACK);
+            gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        }
         //what the starting screen will look like
         if (set == "StartingScreen") {
             gc.setFill(Color.ALICEBLUE);

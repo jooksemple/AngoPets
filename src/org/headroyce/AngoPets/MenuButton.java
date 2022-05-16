@@ -4,7 +4,7 @@ package org.headroyce.AngoPets;
  * Represents the MenuButton
  */
 public class MenuButton extends Button {
-    private String rtnString;
+
     public MenuButton(double x, double y, double width, double height) {
         this.setIsOn(false);
         this.setX(x);
@@ -14,16 +14,13 @@ public class MenuButton extends Button {
     }
     public void click() {
         if (isOn() == true) {
-            rtnString = "StartingScreen";
+            setStage("StartingScreen");
         } else {
-            rtnString = "Menu";
+            setStage("Menu");
         }
 
         if (this.getIsShowing()) {
             this.setIsOn(!this.isOn());
         }
-    }
-    public String getStage() {
-        return rtnString;
     }
 }

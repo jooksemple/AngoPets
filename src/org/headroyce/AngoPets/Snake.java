@@ -8,10 +8,8 @@ import java.util.Random;
  * Represents a specific type of AngoPet
  */
 public class Snake extends AngoPet {
-    private Random rand;
 
     public Snake() {
-        rand = new Random();
         this.changeColor();
         img = new Image("file:PICS/babyDefault.png");
         this.setIsSick(false);
@@ -22,7 +20,6 @@ public class Snake extends AngoPet {
     }
 
     public Snake(double width, double height) {
-        rand = new Random();
         this.changeColor();
         this.setWidth(width);
         this.setHeight(height);
@@ -64,5 +61,6 @@ public class Snake extends AngoPet {
             }
             img = new Image("file:PICS/" + this.getColor() +"dragon.png");
         }
+        this.setAge(age);
     }
 }
