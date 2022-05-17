@@ -35,19 +35,19 @@ public class Cat extends AngoPet {
         }
     public void changeColor() {
         int color = rand.nextInt(5);
-        if (color == 1) {
+        if (color == 0) {
             this.setColor("orange_");
         }
-        if (color == 2) {
+        if (color == 1) {
             this.setColor("yellow_");
         }
-        if (color == 3) {
+        if (color == 2) {
             this.setColor("blue_");
         }
-        if (color == 4) {
+        if (color == 3) {
             this.setColor("red_");
         }
-        if (color == 5) {
+        if (color == 4) {
             this.setColor("purple_");
         }
     }
@@ -80,7 +80,7 @@ public class Cat extends AngoPet {
                     this.setWidth(this.getWidth() * 1.5);
                     this.setHeight(this.getHeight() * 1.5);
                 }
-                //img = new Image("file:PICS/" + this.getColor() +"dragon.png");
+                img = new Image("file:PICS/" + this.getColor() +"griffin.png");
             }
             this.setAge(age);
         }

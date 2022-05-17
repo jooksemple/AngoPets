@@ -120,20 +120,35 @@ public class AngoPet {
     }
     public void changeColor() {
         int color = rand.nextInt(5);
-        if (color == 1) {
+        if (color == 0) {
             this.color = "green_";;
         }
-        if (color == 2) {
+        if (color == 1) {
             this.color = "yellow_";
         }
-        if (color == 3) {
+        if (color == 2) {
             this.color = "blue_";;
         }
-        if (color == 4) {
+        if (color == 3) {
             this.color = "red_";;
         }
-        if (color == 5) {
+        if (color == 4) {
             this.color = "purple_";;
+        }
+    }
+    public void randMood() {
+        int m = rand.nextInt(4);
+        if (m == 0) {
+            this.mood = "Bored";
+        }
+        if (m == 1) {
+            this.mood = "Angry";
+        }
+        if (m == 2) {
+            this.mood = "Sad";
+        }
+        if (m == 3) {
+            this.mood = "Happy";
         }
     }
     public void flipHorizontal() {
@@ -151,5 +166,6 @@ public class AngoPet {
         }
         gc.setFill(Color.BLACK);
         gc.fillText("Age: " + this.getAge(), canvas.getWidth()/2, 10);
+        gc.fillText("Mood: " + this.getMood(), canvas.getWidth()/2, 30  );
     }
 }

@@ -2,6 +2,7 @@ package org.headroyce.AngoPets;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -14,9 +15,10 @@ import java.util.Random;
  * Represents the logic of the game
  */
 public class GameLogic {
-    private static final int HUNGER_TIMER = 4000;
+    private static final int HUNGER_TIMER = 3500;
     private static final int AGE_TIMER = 1000;
     private static final int WALK_TIMER = 1000;
+    private static final int MOOD_TIMER = 35000;
     private static final int GAME_STEP_TIMER = 100;
     private Bar hunger, health;
     private Random rand;
@@ -24,13 +26,13 @@ public class GameLogic {
     private ArrayList<NumberButton> numButtons;
     private GameTimer gameTimer;
     private double canvasWidth, canvasHeight;
-    private double double1, double2;
-    private String operation, playString;
+    private double double1, double2, mouseX, mouseY;
+    private String operation, playString, upgradeText;
     private AngoPet genderNeutralAngopet;
     private Stage stage;
     private int walkingDistance = 20;
     private double equals;
-    private boolean gameOver;
+    private boolean gameOver, upgradeTextShowing;
     private Spaceship ship;
 
     public GameLogic() {
@@ -50,11 +52,11 @@ public class GameLogic {
         rand = new Random();
         gameTimer = new GameTimer();
         if (rand.nextInt(2) == 1) {
-            genderNeutralAngopet = new Snake(85, 70);
+            genderNeutralAngopet = new Snake(175, 140);
         } else {
-            genderNeutralAngopet = new Cat(85, 70);
+            genderNeutralAngopet = new Cat(175, 140);
         }
-        genderNeutralAngopet.setHunger(10);
+        genderNeutralAngopet.setHunger(20);
         double1 = rand.nextInt(10);
         double2 = rand.nextInt(10);
         operation = "+";
@@ -67,6 +69,8 @@ public class GameLogic {
      * @param mouseEvent the cursor clicking the button
      */
     public void click(MouseEvent mouseEvent) {
+        mouseX = (mouseEvent.getX());
+        mouseY = (mouseEvent.getY());
         if (mouseEvent.getX() >= genderNeutralAngopet.getX() && mouseEvent.getX() <= genderNeutralAngopet.getX() + genderNeutralAngopet.getWidth() && mouseEvent.getY() >= genderNeutralAngopet.getY() && mouseEvent.getY() <= genderNeutralAngopet.getY() + genderNeutralAngopet.getHeight()) {
 
         }
@@ -125,29 +129,36 @@ public class GameLogic {
 
     private class GameTimer extends AnimationTimer {
         // The last nanosecond
-        private long lastUpdate;
-        private long hungerUpdate;
-        private long walkUpdate;
-        private long ageUpdate;
 
+        private long walkUpdate, ageUpdate, hungerUpdate, lastUpdate, moodUpdate, upgradeTextUpdate;
 
         public GameTimer() {
-            ageUpdate = lastUpdate = walkUpdate = hungerUpdate = 0;
+            ageUpdate = lastUpdate = walkUpdate = hungerUpdate = moodUpdate = upgradeTextUpdate = 0;
         }
 
         @Override
         public void handle(long now) {
             if (gameOver == false) {
+                if (upgradeTextShowing) {
+                    upgradeTextUpdate = now;
+                    upgradeTextShowing = false;
+                }
+                long text_time_elapsed = (now - upgradeTextUpdate) / 1000000;
+
+                long mood_time_elapsed = (now - moodUpdate) / 1000000;
                 long age_time_elapsed = (now - ageUpdate) / 1000000;
                 long walk_time_elapsed = (now - walkUpdate) / 1000000;
                 long time_elapsed = (now - lastUpdate) / 1000000;
                 long hunger_time_elapsed = (now - hungerUpdate) / 1000000;
 
                 if (age_time_elapsed > AGE_TIMER) {
-                    if (genderNeutralAngopet.getHunger() > 5) {
+                    if (genderNeutralAngopet.getHunger() > 10) {
                         genderNeutralAngopet.age(genderNeutralAngopet.getAge() + 1);
                     }
                     ageUpdate = now;
+                }
+                if (text_time_elapsed > 1000) {
+                    upgradeText = "";
                 }
 
                 if (walk_time_elapsed > WALK_TIMER) {
@@ -162,6 +173,11 @@ public class GameLogic {
                     }
                     hungerUpdate = now;
                 }
+                if (mood_time_elapsed > MOOD_TIMER) {
+                    genderNeutralAngopet.randMood();
+                    moodUpdate = now;
+                }
+
 
                 if (time_elapsed > GAME_STEP_TIMER) {
                     lastUpdate = now;
@@ -169,9 +185,10 @@ public class GameLogic {
                 lastUpdate = now;
 
 
-                if (genderNeutralAngopet.getHealth() <= 0) {
+                if (genderNeutralAngopet.getHealth() <= 0 || genderNeutralAngopet.getAge() > 99) {
                     gameOver = true;
                 }
+
                 for (int i = 0; i < buttons.size(); i++) {
                     if (buttons.get(i).isOn()) {
                         stage.setSet(buttons.get(i).getStage());
@@ -187,14 +204,14 @@ public class GameLogic {
                 if (stage.getSet() == "StartingScreen") {
                     ship.setShowing(false);
                     hunger.setShowing(true);
-                    hunger.setWidth(genderNeutralAngopet.getHunger() * 20);
+                    hunger.setWidth(genderNeutralAngopet.getHunger() * 10);
                     hunger.setX(canvasWidth / 2 - hunger.getWidth() / 2);
-                    hunger.setY(30);
+                    hunger.setY(50);
 
                     health.setShowing(true);
                     health.setWidth(genderNeutralAngopet.getHealth() * 20);
                     health.setX(canvasWidth / 2 - health.getWidth() / 2);
-                    health.setY(70);
+                    health.setY(80);
 
                     buttons.clear();
 
@@ -246,16 +263,31 @@ public class GameLogic {
                     for (int i = 0; i < numButtons.size(); i++) {
                         if (numButtons.get(i).isOn()) {
                             if (numButtons.get(i).getNumber() == equals) {
-                                if (genderNeutralAngopet.getHunger() < 10) {
-                                    genderNeutralAngopet.setHunger(genderNeutralAngopet.getHunger() + 1);
+                                upgradeTextShowing = true;
+                                if (genderNeutralAngopet.getHunger() < 20) {
+                                    if (genderNeutralAngopet.getMood() == "Bored") {
+                                        upgradeText = "+3 Hunger!";
+                                        genderNeutralAngopet.setHunger(genderNeutralAngopet.getHunger() + 3);
+                                    } else if (genderNeutralAngopet.getMood() == "Angry") {
+                                        upgradeText = "+2 Hunger!";
+                                        genderNeutralAngopet.setHunger(genderNeutralAngopet.getHunger() + 2);
+                                    } else if (genderNeutralAngopet.getMood() == "Happy") {
+                                        upgradeText = "+4 Hunger!";
+                                        genderNeutralAngopet.setHunger(genderNeutralAngopet.getHunger() + 4);
+                                    } else {
+                                        upgradeText = "+0 Hunger! Your Angopet is Sad!";
+                                    }
                                 }
                                 numButtons.remove(i);
                                 playString = "";
+                            }
+
                             }
                         }
                     }
 
                     if (playString.isEmpty()) {
+
                         if (genderNeutralAngopet.getAge() < 5) {
                             double1 = rand.nextInt(10);
                             double2 = rand.nextInt(10);
@@ -356,7 +388,7 @@ public class GameLogic {
                     genderNeutralAngopet.setY(canvasHeight / 2 - genderNeutralAngopet.getHeight() / 2);
                 }
             }
-        }
+
 
 
         /**
@@ -365,6 +397,7 @@ public class GameLogic {
          * @param canvas the canvas to render onto
          */
         public void render(Canvas canvas) {
+            GraphicsContext gc = canvas.getGraphicsContext2D();
             canvasWidth = canvas.getWidth();
             canvasHeight = canvas.getHeight();
             stage.render(canvas);
@@ -391,6 +424,7 @@ public class GameLogic {
                     }
                     if (numButtons.get(i).getY() > canvasHeight) {
                         numButtons.remove(i);
+
                     }
                 }
             }
@@ -408,6 +442,8 @@ public class GameLogic {
                 for (int i = 0; i < numButtons.size(); i++) {
                     numButtons.get(i).render(canvas);
                 }
+                    gc.setFill(Color.BLACK);
+                    gc.fillText(upgradeText, mouseX, mouseY);
 
             }
         }
