@@ -73,7 +73,7 @@ public class Cat extends AngoPet {
                     this.setHeight(this.getHeight() * 1.5);
                 }
 
-                //img = new Image("file:PICS/" + this.getColor() +"teenDragon.png");
+                img = new Image("file:PICS/" + this.getColor() +"teenGriffin.png");
             }
             if (age > 35 && age <= 45) {
                 if (age == 36) {
