@@ -342,7 +342,6 @@ public class GameLogic {
                         String answer = "" + equals;
                         if (answer.length() > 4 && operation == "/") {
                             while (answer.length() > 4) {
-                                answer = "" + equals;
                                 if (genderNeutralAngopet.getAge() > 15 && genderNeutralAngopet.getAge() < 25) {
                                     double1 = rand.nextInt(10);
                                     double2 = rand.nextInt(10);
@@ -358,6 +357,7 @@ public class GameLogic {
                                     double2 = rand.nextInt(20) - 10;
                                     equals = double1 / double2;
                                 }
+                                answer = "" + equals;
                             }
                         }
                         playString = (int) double1 + " " + operation + " " + (int) double2 + " =";
@@ -365,6 +365,16 @@ public class GameLogic {
                     }
 
                 }
+            if (stage.getSet() == "Menu") {
+                hunger.setShowing(false);
+                health.setShowing(false);
+                buttons.clear();
+                Button x = new Button((canvasWidth / 4 * 3) - 25, 10, 50, 20);
+                x.setText("Back");
+                x.setColor(Color.RED);
+                x.setStage("StartingScreen");
+                buttons.add(x);
+            }
                     if (stage.getSet().equals("PlayTwo")) {
                         ship.setShowing(true);
                         ship.setWidth(140);
