@@ -41,6 +41,7 @@ public class Button {
      * @param height the height of the button
      */
     public Button(double x, double y, double width, double height) {
+        stage = "StartingScreen";
         isOn = false;
         isShowing = true;
         this.x = x;

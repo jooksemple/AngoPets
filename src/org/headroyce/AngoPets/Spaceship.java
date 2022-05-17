@@ -19,7 +19,7 @@ public class Spaceship {
             img = new Image("file:PICS/Spaceship.png");
             isShowing = true;
             this.width = this.height = 20;
-            this.x = this.y = 20;
+            this.x = this.y = 0;
         }
         public Spaceship(double x, double y, double width, double height) {
             img = new Image("file:PICS/Spaceship.png");

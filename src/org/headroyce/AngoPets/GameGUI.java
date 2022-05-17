@@ -29,19 +29,17 @@ public class GameGUI extends StackPane {
         logic = new GameLogic();
 
         this.getChildren().add(gameArea);
-        gameArea.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                logic.click(mouseEvent);
-            }
-        });
-        gameArea.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent keyEvent) {
-                logic.keyPress(keyEvent);
-            }
-        });
+
         animTimer.start();
+    }
+    public void handleMouseClick(MouseEvent mouseEvent) {
+        logic.click(mouseEvent);
+    }
+    public void handleKeyPress(KeyEvent event){
+        logic.keyPress(event);
+    }
+    public void handleKeyRelease(KeyEvent event){
+        logic.keyRelease(event);
     }
 
     private class AnimTimer extends AnimationTimer {

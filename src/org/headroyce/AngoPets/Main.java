@@ -1,8 +1,11 @@
 package org.headroyce.AngoPets;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -23,6 +26,25 @@ public class Main extends Application {
             primaryStage.setTitle("AngoPets");
             Scene scene = new Scene(root, 600.0D, 600.0D);
             primaryStage.setScene(scene);
+            scene.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+                @Override
+                public void handle(KeyEvent keyEvent) {
+                    root.handleKeyPress(keyEvent);
+                }
+            });
+
+            scene.addEventHandler(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>() {
+                @Override
+                public void handle(KeyEvent keyEvent) {
+                    root.handleKeyRelease(keyEvent);
+                }
+            });
+            scene.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    root.handleMouseClick(mouseEvent);
+                }
+            });
             primaryStage.show();
         }
         /**
@@ -31,5 +53,16 @@ public class Main extends Application {
         public static void main(String[] args) {
             launch(args);
         }
+    private class KeyPressHandler implements EventHandler<KeyEvent> {
+        public void handle(KeyEvent event){
+            System.err.println("KEY PRESS");
+        }
+    }
+
+    private class KeyReleaseHandler implements EventHandler<KeyEvent> {
+        public void handle(KeyEvent event) {
+            System.err.println("KEY RELEASE");
+        }
+    }
 
     }
