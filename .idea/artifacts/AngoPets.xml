@@ -1,0 +1,19 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="AngoPets">
+    <output-path>$PROJECT_DIR$/out/artifacts</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="org.headroyce.AngoPets.Main" />
+        <option name="description" value="" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="title" value="" />
+        <option name="vendor" value="" />
+        <option name="version" value="" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="module-output" name="AngoPets" />
+      <element id="library" level="project" name="lib" />
+    </root>
+  </artifact>
+</component>
