@@ -4,6 +4,7 @@ import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
 /**
@@ -213,6 +214,7 @@ public class Button {
             gc.setFill(this.color);
             gc.fillRect(this.x, this.y, this.width, this.height);
             gc.setFill(this.color.invert());
+            gc.setFont(Font.font ("Arial", 15));
             gc.setTextAlign(TextAlignment.CENTER);
             gc.setTextBaseline(VPos.CENTER);
 

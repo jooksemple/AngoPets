@@ -136,19 +136,15 @@ public class AngoPet {
             this.color = "purple_";;
         }
     }
-    public void randMood() {
-        int m = rand.nextInt(4);
-        if (m == 0) {
+    public void changeMood() {
+        if (this.mood == "Happy") {
             this.mood = "Bored";
         }
-        if (m == 1) {
+        if (this.mood == "Bored") {
             this.mood = "Angry";
         }
-        if (m == 2) {
+        if (this.mood == "Angry") {
             this.mood = "Sad";
-        }
-        if (m == 3) {
-            this.mood = "Happy";
         }
     }
     public void flipHorizontal() {

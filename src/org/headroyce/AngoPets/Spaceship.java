@@ -38,9 +38,12 @@ public class Spaceship {
     public void setXSpeed(double xSpeed) {this.xSpeed = xSpeed; }
     public double getYSpeed() {return this.ySpeed; }
     public void setYSpeed(double ySpeed) {this.ySpeed = ySpeed; }
+    public Image getImage() { return this.img; }
 
     public double getX() {return this.x;}
     public double getY() {return this.y;}
+
+    public void setImage(Image img) {  this.img = img; }
         public void setShowing(boolean showing) {
             this.isShowing = showing;
         }
