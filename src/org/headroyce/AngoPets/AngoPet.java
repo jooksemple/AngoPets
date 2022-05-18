@@ -162,6 +162,25 @@ public class AngoPet {
             return;
         }
     }
+    public void upMood() {
+
+        if (this.mood.equals("Sad")) {
+            this.mood = "Angry";
+            return;
+        }
+        if (this.mood.equals("Angry")) {
+            this.mood = "Bored";
+            return;
+        }
+        if (this.mood.equals("Bored")) {
+            this.mood = "Happy";
+            return;
+        }
+        if (this.mood.equals("Happy")) {
+            this.mood = "Happy";
+            return;
+        }
+    }
     public void flipHorizontal() {
         this.setWidth(this.horizontalFlip * -1);
     }

@@ -492,7 +492,7 @@ public class GameLogic {
                                 stage.setSet("StartingScreen");
                             } else {
                                 asteroids.remove(i);
-                                genderNeutralAngopet.setMood("Happy");
+                                genderNeutralAngopet.upMood();
                                 playString = "";
                             }
                         }
