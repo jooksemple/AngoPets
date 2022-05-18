@@ -8,21 +8,14 @@ import javafx.scene.text.TextAlignment;
 import java.util.Random;
 
 /**
- * Represents the buttons of the Asteroid game
+ * Represents the buttons of the Hunger game
  */
 public class NumberButton extends Button{
     private Random rand;
 
-    public NumberButton(double x, double y, double width, double height) {
-        this.setIsOn(false);
-        this.setX(x);
-        this.setY(y);
-        this.setWidth(width);
-        this.setHeight(height);
-        this.setXSpeed(0);
-        this.setYSpeed(0);
-        rand = new Random();
-    }
+    /**
+     * Creates a NumberButton
+     */
     public NumberButton() {
         this.setXSpeed(0);
         this.setYSpeed(0);
@@ -31,15 +24,21 @@ public class NumberButton extends Button{
         rand = new Random();
     }
 
+    /**
+     * Gets the current stage
+     * @return
+     */
     public String getStage() {
         return "PlayOne";
     }
 
+    /**
+     * Commands to do when a Number Button is clicked
+     */
     public void click() {
         if (this.getIsShowing()) {
             this.setIsOn(true);
         }
-
     }
 
     /**

@@ -5,35 +5,42 @@ import javafx.scene.image.Image;
 import java.util.Random;
 
 /**
- * Represents a specific type of AngoPet
+ * Represents a specific type of AngoPet - snake
  */
 public class Snake extends AngoPet {
 
+    /**
+     * Creates a snake AngoPet
+     */
     public Snake() {
         this.changeColor();
         img = new Image("file:PICS/babyDefault.png");
-        this.setIsSick(false);
         this.setHunger(0);
         this.setMood("Bored");
         this.setX(50);
         this.setY(50);
     }
-
+    /**
+     * Creates a snake AngoPet with a custom width and height
+     * @param width the custom width to set the AngoPet
+     * @param height the custom height to set the AngoPet
+     */
     public Snake(double width, double height) {
         this.changeColor();
         this.setWidth(width);
         this.setHeight(height);
         this.setMood("Bored");
         img = new Image("file:PICS/babyDefault.png");
-        this.setIsSick(false);
         this.setHunger(0);
         this.setX(50);
         this.setY(50);
     }
 
-
+    /**
+     * Changes the image of the AngoPet depending on the age
+     * @param age the age to set to
+     */
     public void age(int age) {
-
         if (age >= 0 && age <= 5) {
             img = new Image("file:PICS/babyDefault.png");
         }
@@ -51,7 +58,6 @@ public class Snake extends AngoPet {
                 this.setWidth(this.getWidth() * 1.5);
                 this.setHeight(this.getHeight() * 1.5);
             }
-
             img = new Image("file:PICS/" + this.getColor() +"teenDragon.png");
         }
         if (age > 65 && age <= 85) {
