@@ -60,7 +60,7 @@ public class Stage {
             gc.setFill(Color.WHITE);
             gc.setTextAlign(TextAlignment.CENTER);
             gc.setTextBaseline(VPos.CENTER);
-            gc.fillText(playString, canvas.getWidth()/2, canvas.getHeight()/2);
+            gc.fillText(playString + " (Click the right answer!)", canvas.getWidth()/2, canvas.getHeight()/2);
         }
         if (set == "PlayTwo") {
             gc.setFill(Color.BLACK);

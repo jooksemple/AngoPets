@@ -633,7 +633,7 @@ public class GameLogic {
                     gc.setFill(Color.BLACK);
 
                 }
-                gc.fillText(upgradeText, mouseX, mouseY);
+                gc.fillText(upgradeText , mouseX, mouseY);
 
                 for (int i = 0; i < buttons.size(); i++) {
                     buttons.get(i).render(canvas);
@@ -666,7 +666,7 @@ public class GameLogic {
                     gc.setFill(Color.WHITE);
                     gc.setTextAlign(TextAlignment.CENTER);
                     gc.setTextBaseline(VPos.CENTER);
-                    gc.fillText(playString, canvasWidth / 2, 20);
+                    gc.fillText(playString + "(Shoot the wrong answers!)", canvasWidth / 2, 20);
                 }
             } else {
                 gc.setFill(Color.BLACK);
