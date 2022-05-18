@@ -32,16 +32,33 @@ public class GameGUI extends StackPane {
 
         animTimer.start();
     }
+
+    /**
+     * handler for when the mouse is pressed on the screen, that passes the event to the logic click handler
+     * @param mouseEvent the MouseEvent when the screen is clicked
+     */
     public void handleMouseClick(MouseEvent mouseEvent) {
         logic.click(mouseEvent);
     }
+
+    /**
+     * handler for when the key is pressed on the screen, that passes the event to the logic key handler
+     * @param event the KeyEvent when a key is pressed
+     */
     public void handleKeyPress(KeyEvent event){
         logic.keyPress(event);
     }
+    /**
+     * handler for when the key is released on the screen, that passes the event to the logic key handler
+     * @param event the KeyEvent when a key is pressed
+     */
     public void handleKeyRelease(KeyEvent event){
         logic.keyRelease(event);
     }
 
+    /**
+     * The animation timer that runs render on logic and renders the canvas.
+     */
     private class AnimTimer extends AnimationTimer {
 
         @Override
