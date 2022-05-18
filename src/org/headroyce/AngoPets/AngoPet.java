@@ -5,6 +5,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
+import javafx.scene.text.Font;
 
 import java.util.Random;
 
@@ -19,31 +20,12 @@ public class AngoPet {
     public Image img;
     private String color, mood;
     private double x, y, width, height;
-    private int hunger, xSpeed, ySpeed, age, health, horizontalFlip;
+    private int hunger, age, health;
     private boolean isSick;
 
-    public AngoPet(double width, double height) {
-        color = "";
-        rand = new Random();
-        this.setWidth(width);
-        this.setHeight(height);
-        img = new Image("file:PICS/babyDefault.png");
-        this.isSick = false;
-        horizontalFlip = 1;
-        this.health = 10;
-        this.hunger = 10;
-        this.xSpeed = 1;
-        this.ySpeed = 1;
-        this.age = 0;
-        this.setMood("Bored");
-        this.x = 50;
-        this.y = 50;
-    }
     public AngoPet() {
         rand = new Random();
         color = "";
-        this.xSpeed = 0;
-        this.ySpeed = 0;
         img = new Image("file:PICS/babyDefault.png");
         this.isSick = false;
         this.health = 10;
@@ -79,8 +61,6 @@ public class AngoPet {
         this.y = y;
     }
     public void setAge(int age) { this.age = age; }
-    public void setXSpeed(int speed) { this.xSpeed = speed; }
-    public void setYSpeed(int speed) { this.ySpeed = speed; }
     public void setWidth( double width) {
        this.width = width;
     }
@@ -181,21 +161,14 @@ public class AngoPet {
             return;
         }
     }
-    public void flipHorizontal() {
-        this.setWidth(this.horizontalFlip * -1);
-    }
 
     public void render( Canvas canvas ) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.setFill(new ImagePattern(img));
-        if (this.horizontalFlip < 0) {
-            gc.fillRect(this.getX() + Math.abs(this.getWidth()), canvas.getHeight() / 2 - this.getHeight() / 2, this.getWidth(), this.getHeight());
-        }
-        if (this.getWidth() > 0) {
-            gc.fillRect(this.getX(), canvas.getHeight() / 2 - this.getHeight() / 2, this.getWidth(), this.getHeight());
-        }
+        gc.fillRect(this.getX(), canvas.getHeight() / 2 - this.getHeight() / 2, this.getWidth(), this.getHeight());
         gc.setFill(Color.BLACK);
-        gc.fillText("Age: " + this.getAge(), canvas.getWidth()/2, 10);
-        gc.fillText("Mood: " + this.getMood(), canvas.getWidth()/2, 30  );
+        gc.setFont(Font.font("Verdana", 15));
+        gc.fillText("Age: " + this.getAge(), canvas.getWidth()/2, 12);
+        gc.fillText("Mood: " + this.getMood(), canvas.getWidth()/2, 35  );
     }
 }

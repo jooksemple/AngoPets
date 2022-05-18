@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="AngoPets:jar">
+  <artifact type="javafx" build-on-make="true" name="AngoPets:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/AngoPets_jar</output-path>
-    <root id="archive" name="AngoPets.jar">
+    <root id="root">
       <element id="module-output" name="AngoPets" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/javafx-sdk-17.0.2/lib/javafx-swt.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/javafx-sdk-17.0.2/lib/javafx.web.jar" path-in-jar="/" />

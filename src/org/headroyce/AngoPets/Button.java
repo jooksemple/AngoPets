@@ -214,10 +214,9 @@ public class Button {
             gc.setFill(this.color);
             gc.fillRect(this.x, this.y, this.width, this.height);
             gc.setFill(this.color.invert());
-            gc.setFont(Font.font ("Arial", 15));
+            gc.setFont(Font.font ("Verdana", 15));
             gc.setTextAlign(TextAlignment.CENTER);
             gc.setTextBaseline(VPos.CENTER);
-
             gc.fillText(this.text, this.x + this.width / 2, this.y + this.height / 2);
         }
     }

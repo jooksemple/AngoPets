@@ -55,9 +55,9 @@ public class Stage {
         //what the play screen will look like
         if (set == "PlayOne") {
 
-            gc.setFill(Color.GREEN);
+            gc.setFill(Color.PALETURQUOISE);
             gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-            gc.setFill(Color.WHITE);
+            gc.setFill(Color.BLACK);
             gc.setTextAlign(TextAlignment.CENTER);
             gc.setTextBaseline(VPos.CENTER);
             gc.fillText(playString + " (Click the right answer!)", canvas.getWidth()/2, canvas.getHeight()/2);
@@ -68,7 +68,7 @@ public class Stage {
         }
         //what the starting screen will look like
         if (set == "StartingScreen") {
-            gc.setFill(Color.ALICEBLUE);
+            gc.setFill(Color.LIGHTBLUE);
             gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         }
 
@@ -86,7 +86,7 @@ public class Stage {
                             "and will eventually die! Take good care of it!" + "\n" + "\n" +
                             "Press “Play Hunger” to play the math game that feeds your AngoPet:\n" +
                     "\n" +
-                    "Features of this Game:\n" +
+                    "Features of the Hunger Game:\n" +
                     "\n" +
                     "Try to click the correct answer to the math expression shown in the" +
                     "\n" +
@@ -95,12 +95,12 @@ public class Stage {
                     "and tell you how much you fed your pet. There is no penalty for getting" + "\n"
                      + "the wrong answer. The amount that your pet is fed depends on its mood." + "\n" + "" +
                     "If your pet is sad, it will not eat any food. If your pet is angry, it gains" + "\n" +
-                    "2 hunger when you feed it. If it is bored, it gains 3 hunger, and if it is happy," + "\n" +
-                    "it gains 4 hunger." +
+                    "two hunger points when you feed it. If it is bored, it gains three hunger points," +"\n" +
+                            "and if it is happy, it gains four hunger points." +
                     "\n" + "\n" +
                     "Press “Play Mood” to play the math game that improves the mood of your AngoPet:\n" +
                     "\n" +
-                    "Features of this Game:\n" + "\n" +
+                    "Features of the Mood Game:\n" + "\n" +
                     "You are in a spaceship, and you have to destroy the asteroids flying towards you!" + "\n" + "" +
                     "Use the arrow keys to navigate in your ship, and press space to launch a laser " + "\n" +
                     "projectile out from the front! To help your pet get happier, shoot down the wrong" + "\n" +

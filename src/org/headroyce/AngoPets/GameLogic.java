@@ -244,23 +244,23 @@ public class GameLogic {
                     health.setShowing(true);
                     health.setWidth(genderNeutralAngopet.getHealth() * 20);
                     health.setX(canvasWidth / 2 - health.getWidth() / 2);
-                    health.setY(80);
+                    health.setY(90);
 
                     buttons.clear();
 
-                    Button e = new Button((canvasWidth / 8 * 7) - 25, 10, 100, 20);
+                    Button e = new Button((canvasWidth / 8 * 7) - 50, 10, 100, 30);
                     e.setColor(Color.DARKBLUE);
                     e.setText("Play Hunger");
                     e.setStage("PlayOne");
                     buttons.add(e);
 
-                    Button a = new Button((canvasWidth / 8 * 7) - 25, 40, 100, 20);
+                    Button a = new Button((canvasWidth / 8 * 7) - 50, 50, 100, 30);
                     a.setColor(Color.DARKBLUE);
                     a.setText("Play Mood");
                     a.setStage("PlayTwo");
                     buttons.add(a);
 
-                    MenuButton d = new MenuButton((canvasWidth / 8) - 25, 10, 50, 20);
+                    MenuButton d = new MenuButton((canvasWidth / 8) - 50, 10, 50, 30);
                     d.setColor(Color.DARKBLUE);
                     d.setText("Menu");
                     buttons.add(d);
@@ -282,7 +282,7 @@ public class GameLogic {
                             e.setY(-e.getHeight());
                             e.setColor(Color.DARKBLUE);
                             e.setWidth(50);
-                            e.setHeight(20);
+                            e.setHeight(30);
                             e.setYSpeed(rand.nextDouble(2) + 0.5);
                             e.setXSpeed(rand.nextDouble(2) * 2 - 2);
                             e.setNumber(rand.nextInt(50) - 25);
@@ -291,7 +291,7 @@ public class GameLogic {
                         }
                     }
 
-                    Button c = new Button(((canvasWidth / 8) * 7), 10, 50, 20);
+                    Button c = new Button(((canvasWidth / 8) * 7), 10, 50, 30);
                     c.setText("Back");
                     c.setColor(Color.RED);
                     c.setStage("StartingScreen");
@@ -372,7 +372,7 @@ public class GameLogic {
                             equals = double1 / double2;
                         }
                     }
-                    if (double2 == 0) {
+                    if (double2 == 0 && operation == "/") {
                         double2 = 3;
                     }
                     String answer = "" + equals;
@@ -409,7 +409,7 @@ public class GameLogic {
                     hunger.setShowing(false);
                     health.setShowing(false);
                     buttons.clear();
-                    Button x = new Button((canvasWidth / 4 * 3) - 25, 10, 50, 20);
+                    Button x = new Button((canvasWidth / 4 * 3) - 25, 10, 50, 30);
                     x.setText("Back");
                     x.setColor(Color.RED);
                     x.setStage("StartingScreen");
@@ -439,16 +439,16 @@ public class GameLogic {
                     }
                     for (int i = 0; i < asteroids.size(); i++) {
                         for (int j = 0; j < bullet.size(); j++) {
-                            if (isTouching(bullet.get(j), asteroids.get(i))) {
-                                if (asteroids.get(i).getNumber() == equals) {
-                                    stage.setSet("StartingScreen");
-                                } else {
-                                    asteroids.remove(i);
-                                    if (asteroids.size() > 0) {
+                            if (i >=0) {
+                                if (isTouching(bullet.get(j), asteroids.get(i))) {
+                                    if (asteroids.get(i).getNumber() == equals) {
+                                        stage.setSet("StartingScreen");
+                                    } else {
+                                        asteroids.remove(i);
                                         i--;
                                     }
-                                }
 
+                                }
                             }
                         }
 
@@ -500,7 +500,7 @@ public class GameLogic {
                     }
 
 
-                    Button x = new Button(((canvasWidth / 8) * 7) - 25, 10, 50, 20);
+                    Button x = new Button(((canvasWidth / 8) * 7) , 10, 50, 30);
                     x.setText("Back");
                     x.setColor(Color.RED);
                     x.setStage("StartingScreen");
@@ -666,7 +666,7 @@ public class GameLogic {
                     gc.setFill(Color.WHITE);
                     gc.setTextAlign(TextAlignment.CENTER);
                     gc.setTextBaseline(VPos.CENTER);
-                    gc.fillText(playString + "(Shoot the wrong answers!)", canvasWidth / 2, 20);
+                    gc.fillText(playString + " (Shoot the wrong answers!)", canvasWidth / 2, 20);
                 }
             } else {
                 gc.setFill(Color.BLACK);

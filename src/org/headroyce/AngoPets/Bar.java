@@ -13,7 +13,7 @@ public class Bar {
     private String text;
     public Bar() {
         isShowing = true;
-        this.width = this.height = 20;
+        this.width = this.height = 30;
         this.x = this.y = 20;
     }
     public Bar(double x, double y, double width, double height) {
