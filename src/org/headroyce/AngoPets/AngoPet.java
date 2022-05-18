@@ -35,7 +35,7 @@ public class AngoPet {
         this.xSpeed = 1;
         this.ySpeed = 1;
         this.age = 0;
-        this.mood = "Bored";
+        this.setMood("Bored");
         this.x = 50;
         this.y = 50;
     }
@@ -48,7 +48,7 @@ public class AngoPet {
         this.isSick = false;
         this.health = 10;
         this.hunger = 0;
-        this.mood = "Bored";
+        this.setMood("Bored");
         this.age = 0;
         this.x = 50;
         this.y = 50;
@@ -88,7 +88,12 @@ public class AngoPet {
         this.height = height;
     }
     public void setHunger( int hunger) {
-        this.hunger = hunger;
+        if (hunger > 20) {
+            this.hunger = 20;
+        } else {
+            this.hunger = hunger;
+        }
+
     }
     public void setMood( String mood) {
         this.mood = mood;
@@ -100,9 +105,11 @@ public class AngoPet {
     public int getHunger() {
         return this.hunger;
     }
+
     public String getMood() {
         return this.mood;
     }
+
     public void setColor(String color) {
         this.color = color;
     }
@@ -137,14 +144,22 @@ public class AngoPet {
         }
     }
     public void changeMood() {
-        if (this.mood == "Happy") {
+
+        if (this.mood.equals("Happy")) {
             this.mood = "Bored";
+            return;
         }
-        if (this.mood == "Bored") {
+        if (this.mood.equals("Bored")) {
             this.mood = "Angry";
+            return;
         }
-        if (this.mood == "Angry") {
+        if (this.mood.equals("Angry")) {
             this.mood = "Sad";
+            return;
+        }
+        if (this.mood.equals("Sad")) {
+            this.mood = "Sad";
+            return;
         }
     }
     public void flipHorizontal() {

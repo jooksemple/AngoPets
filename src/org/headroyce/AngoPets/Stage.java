@@ -76,6 +76,38 @@ public class Stage {
         if (set == "Menu") {
             gc.setFill(Color.PALEGREEN);
             gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+            gc.setFill(Color.BLACK);
+            gc.setTextAlign(TextAlignment.LEFT);
+            gc.setTextBaseline(VPos.CENTER);
+            gc.fillText(
+                    "Hunger and Mood are essential to keeping your AngoPet alive!" +
+                            "\n" + "\n" +
+                            "If your AngoPet is in a bad mood, it will eat less, and if it gets hungry, it won't grow" + "\n" +
+                            "and will eventually die! Take good care of it!" + "\n" + "\n" +
+                            "Press “Play Hunger” to play the math game that feeds your AngoPet:\n" +
+                    "\n" +
+                    "Features of this Game:\n" +
+                    "\n" +
+                    "Try to click the correct answer to the math expression shown in the" +
+                    "\n" +
+                    "middle of the screen. If you click the right answer, it will disappear" +
+                    "\n" +
+                    "and tell you how much you fed your pet. There is no penalty for getting" + "\n"
+                     + "the wrong answer. The amount that your pet is fed depends on its mood." + "\n" + "" +
+                    "If your pet is sad, it will not eat any food. If your pet is angry, it gains" + "\n" +
+                    "2 hunger when you feed it. If it is bored, it gains 3 hunger, and if it is happy," + "\n" +
+                    "it gains 4 hunger." +
+                    "\n" + "\n" +
+                    "Press “Play Mood” to play the math game that improves the mood of your AngoPet:\n" +
+                    "\n" +
+                    "Features of this Game:\n" + "\n" +
+                    "You are in a spaceship, and you have to destroy the asteroids flying towards you!" + "\n" + "" +
+                    "Use the arrow keys to navigate in your ship, and press space to launch a laser " + "\n" +
+                    "projectile out from the front! To help your pet get happier, shoot down the wrong" + "\n" +
+                    "answers to the math expression, and let the correct answers fall to the bottom of" + "\n" +
+                    "the screen, or touch them with your spaceship. If you shoot the right answer or let" + "\n" +
+                    "a wrong answer fall past you, the game is over and you are returned to the main screen.\n", 20, canvas.getHeight()/2);
+
         }
 
     }

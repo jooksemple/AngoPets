@@ -58,25 +58,25 @@ public class Cat extends AngoPet {
             if (age >= 0 && age <= 5) {
                 img = new Image("file:PICS/babyDefault.png");
             }
-            if (age > 5 && age <= 15) {
+            if (age > 5 && age <= 25) {
                 if (age == 6) {
                     this.changeColor();
                 }
                 img = new Image("file:PICS/" + this.getColor() +"kitten.png");
             }
-            if (age > 15 && age <= 25) {
+            if (age > 25 && age <= 45) {
                 img = new Image("file:PICS/" + this.getColor() +"teenCat.png");
             }
-            if (age > 25 && age <= 35) {
-                if (age == 26) {
+            if (age > 45 && age <= 65) {
+                if (age == 46) {
                     this.setWidth(this.getWidth() * 1.5);
                     this.setHeight(this.getHeight() * 1.5);
                 }
 
                 img = new Image("file:PICS/" + this.getColor() +"teenGriffin.png");
             }
-            if (age > 35 && age <= 45) {
-                if (age == 36) {
+            if (age > 65 && age <= 85) {
+                if (age == 66) {
                     this.setWidth(this.getWidth() * 1.5);
                     this.setHeight(this.getHeight() * 1.5);
                 }
