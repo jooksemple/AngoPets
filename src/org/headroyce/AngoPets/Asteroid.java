@@ -9,10 +9,15 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
+/**
+ * Represents the Asteroids in the Mood game
+ */
 public class Asteroid extends Projectile {
 
+    /**
+     * Creates an Asteroid
+     */
     public Asteroid() {
-
         this.setShowing(true);
         this.setWidth(40);
         this.setHeight(40);
@@ -21,6 +26,10 @@ public class Asteroid extends Projectile {
         this.setImage(new Image("file:PICS/asteroid.png"));
     }
 
+    /**
+     * Renders this object onto the canvas
+     * @param canvas the canvas to render onto
+     */
     public void render( Canvas canvas ) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         if (this.isShowing()) {
