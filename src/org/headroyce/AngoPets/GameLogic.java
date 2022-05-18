@@ -17,7 +17,7 @@ import java.util.Random;
  * Represents the logic of the game
  */
 public class GameLogic {
-    private static final int HUNGER_TIMER = 3500;
+    private static final int HUNGER_TIMER = 7000;
     private static final int AGE_TIMER = 5000;
     private static final int WALK_TIMER = 1000;
     private static final int MOOD_TIMER = 35000;
@@ -372,8 +372,8 @@ public class GameLogic {
                             equals = double1 / double2;
                         }
                     }
-                    if (double1 == 0 && double2 == 0) {
-                        double1 = 3;
+                    if (double2 == 0) {
+                        double2 = 3;
                     }
                     String answer = "" + equals;
                     if (answer.length() > 4 && operation == "/") {
