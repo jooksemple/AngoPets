@@ -53,16 +53,7 @@ public class Main extends Application {
         public static void main(String[] args) {
             launch(args);
         }
-    private class KeyPressHandler implements EventHandler<KeyEvent> {
-        public void handle(KeyEvent event){
-            System.err.println("KEY PRESS");
-        }
-    }
 
-    private class KeyReleaseHandler implements EventHandler<KeyEvent> {
-        public void handle(KeyEvent event) {
-            System.err.println("KEY RELEASE");
-        }
-    }
+
 
     }

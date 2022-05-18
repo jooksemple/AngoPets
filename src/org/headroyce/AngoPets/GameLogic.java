@@ -140,7 +140,6 @@ public class GameLogic {
         if (a.getY() + a.getHeight() < b.getY() || a.getY() > b.getY() + b.getHeight() || a.getX() + a.getWidth() < b.getX() || a.getX() > b.getX() + b.getWidth()) {
             return false;
         }
-        System.out.println("touching");
         return true;
     }
 
@@ -457,7 +456,7 @@ public class GameLogic {
 
                     for (int i = 0; i < asteroids.size() - 1; i++) {
                         if (isTouching(asteroids.get(i), asteroids.get(i + 1))) {
-                            System.out.println("touching");
+
                             asteroids.get(i).setX(asteroids.get(i + 1).getX() - asteroids.get(i + 1).getWidth() - 1);
                             if (asteroids.size() > 0) {
                                 i--;
